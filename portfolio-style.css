@@ -1,0 +1,148 @@
+:root
+{
+	--backgroundLight: #134e53;
+	--backgroundMed: #0B2D32;
+	--backgroundDark: #081F21;
+	
+	--textColor: #FFFFF0;
+	--baseFontSize: 1.256em;
+	--footerSize: calc(1.256em * 4);
+	
+	--sysFont: system-ui;
+	--sysFontSS: system-ui, sans-serif;
+}
+
+body
+{
+	height: 100%;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+	margin-bottom: var(--footerSize);
+	background: linear-gradient(15deg, 
+								var(--backgroundDark) 0%, 
+								var(--backgroundMed) 75%, 
+								var(--backgroundLight) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+p 
+{
+	margin-left: auto;
+	margin-right: auto;
+	align-content: center;
+
+	color: var(--textColor);
+	font-family: var(--sysFontSS);
+	font-size: var(--baseFontSize);
+	font-weight: normal;
+	text-shadow: 0 0 calc(var(--baseFontSize) * 0.25) black;
+	text-align: left;
+
+	line-height: 1.5;
+	
+	/*
+	NOTE(RYAN_2024-04-30): 	I wanted 80 characters per line but it was going over
+							90 characters per line, which was incorrect. I am not
+							sure why that is, but I just reduced the max-width
+							until the largest line was <= 80 characters.
+	*/
+	max-width: 64ch;
+}
+
+.center 
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+h1 
+{
+	color: var(--textColor);
+	
+	font-family: var(--sysFontSS);
+	font-size: calc(var(--baseFontSize) * 2);
+	text-shadow: 0 0 var(--baseFontSize) black;
+	text-align: center;
+	line-height: 2;
+	max-width: 64ch;
+}
+
+h2 
+{
+	color: var(--textColor);
+	
+	font-family: var(--sysFontSS);
+	font-size: calc(var(--baseFontSize) * 1.5);
+	text-shadow: 0 0 var(--baseFontSize) black;
+	text-align: center;	
+	line-height: 2;
+}
+
+h3 
+{
+	color: var(--textColor);
+	
+	font-family: var(--sysFontSS);
+	font-size: calc(var(--baseFontSize) * 1.25);
+	text-shadow: 0 0 var(--baseFontSize) black;
+	text-align: center;
+	line-height: 2;
+}
+
+.socialButton
+{
+	appearance: none;
+	background-color: #000000;
+	border: 2px solid #1A1A1A;
+	border-radius: 15px;
+	box-sizing: border-box;
+	color: var(--textColor);
+	cursor: pointer;
+	display: inline-block;
+	font-family: var(--sysFont);
+	font-size: var(--baseFontSize);
+	font-weight: bold;
+	text-shadow: 0 0 calc(var(--baseFontSize) * 0.25) black;
+	
+	line-height: normal;
+	margin-top: var(--footerSize);
+	margin-right: calc(var(--baseFontSize) * 0.5);
+	margin-left: calc(var(--baseFontSize) * 0.5);
+	
+	min-height: 60px;
+	min-width: 1em;
+	outline: none;
+	padding: 16px 24px;
+	text-align: center;
+	text-decoration: none;
+	transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+	width: auto;
+	will-change: transform;
+}
+
+.socialButton:disabled { pointer-events: none; }
+.socialButton:hover
+{
+	box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+	transform: translateY(-0.25rem);
+}
+.socialButton:active
+{
+	box-shadow: none;
+	transform: translateY(0);
+}
+
+footer
+{
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+}
