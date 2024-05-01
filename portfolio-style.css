@@ -1,8 +1,8 @@
 :root
 {
 	--backgroundLight: #134e53;
-	--backgroundMed: #0B2D32;
-	--backgroundDark: #081F21;
+	--backgroundMed: #071E21;
+	--backgroundDark: #040F11;
 	--headerBackground: #3D2C29;
 	
 	--textColor: #FFFFF0;
@@ -33,7 +33,7 @@ a:link, a:visited
 { 
 	color: var(--textColor);
 }
-a:hover, a:active 	{ color: hotpink; }
+a:hover, a:active 	{ color: #D54934; }
 
 p 
 {
@@ -170,7 +170,7 @@ footer
   color: #3D2C29;
 }
 /* Add a color to the active/current link */
-.topnav a.active { background-color: #1A6874; color: var(--textColor); }
+.topnav a.active { background-color: #879721; color: var(--textColor); }
 
 ul
 {
