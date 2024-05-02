@@ -1,14 +1,20 @@
 :root
 {
-	--backgroundLight: #134e53;
-	--backgroundMed: #071E21;
-	--backgroundDark: #040F11;
-	--headerBackground: #3D2C29;
+	--background: #0B0721;
+	--lightBackground: #656F79;
+	
+	--navbarBackground: #2d320b;
+	--navbarForeground: #E17866;
 	
 	--textColor: #FFFFF0;
-	--baseFontSize: 1.256em;
-	--relBaseFontSize: 1.256rem;
-	--footerSize: calc(1.256em * 4);
+	--baseFontSize: 1.256rem;
+	
+	--hdrOneSize: calc(var(--baseFontSize) * 2.5);
+	--hdrTwoSize: calc(var(--baseFontSize) * 2.0);
+	--hdrThreeSize: calc(var(--baseFontSize) * 1.5);
+	
+	--fontShadowSize: calc(var(--baseFontSize) * 0.1);
+	--footerSize: calc(var(--baseFontSize) * 4);
 	
 	--sysFont: system-ui;
 	--sysFontSS: system-ui, sans-serif;
@@ -21,19 +27,13 @@ body
     margin-left: 0;
     margin-right: 0;
 	margin-bottom: var(--footerSize);
-	background: linear-gradient(15deg, 
-								var(--backgroundDark) 0%, 
-								var(--backgroundMed) 75%, 
-								var(--backgroundLight) 100%);
+	background: var(--background);
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
-a:link, a:visited 	
-{ 
-	color: var(--textColor);
-}
-a:hover, a:active 	{ color: #D54934; }
+a:link, a:visited 	{ color: var(--textColor); }
+a:hover, a:active 	{ color: var(--navbarForeground); }
 
 p 
 {
@@ -41,15 +41,15 @@ p
 	margin-right: auto;
 	align-content: center;
 
-	padding: var(--baseFontSize);
+	padding: 0 var(--baseFontSize);
 	color: var(--textColor);
 	font-family: var(--sysFontSS);
 	font-size: var(--baseFontSize);
-	text-shadow: 0 0 calc(var(--baseFontSize) * 0.25) black;
+	text-shadow: 0 0 var(--fontShadowSize) black;
+	
 	font-weight: normal;
 	text-align: left;
-
-	line-height: 1.5;
+	line-height: 1.5em;
 	
 	/*
 	NOTE(RYAN_2024-04-30): 	I wanted 80 characters per line but it was going over
@@ -71,60 +71,59 @@ p
 h1 
 {
 	color: var(--textColor);
-	
 	font-family: var(--sysFontSS);
-	font-size: calc(var(--baseFontSize) * 2);
-	text-shadow: 0 0 calc(var(--baseFontSize) * 0.5) black;
+	font-size: var(--hdrOneSize);
+	text-shadow: 0 0 calc(var(--fontShadowSize) * 2) black;
+	
 	text-align: center;	
-	line-height: 2;
+	line-height: 1.5em;
 }
-
 h2 
 {
 	color: var(--textColor);
-	
 	font-family: var(--sysFontSS);
-	font-size: calc(var(--baseFontSize) * 1.5);
-	text-shadow: 0 0 calc(var(--baseFontSize) * 0.5) black;
-	text-align: center;	
-	line-height: 2;
+	font-size: var(--hdrTwoSize);
+	text-shadow: 0 0 calc(var(--fontShadowSize) * 1.5) black;
+	
+	text-align: center;
+	line-height: 1.5em;
 }
-
 h3 
 {
 	color: var(--textColor);
-	
 	font-family: var(--sysFontSS);
-	font-size: calc(var(--baseFontSize) * 1.25);
-	text-shadow: 0 0 calc(var(--baseFontSize) * 0.5) black;
+	font-size: var(--hdrThreeSize);
+	text-shadow: 0 0 calc(var(--fontShadowSize) * 1.25) black;
+	
 	text-align: center;
-	line-height: 2;
+	line-height: 1.5em;
 }
 
 .socialButton
 {
 	appearance: none;
-	background-color: #000000;
+	background-color: black;
 	border: 2px solid #1A1A1A;
 	border-radius: 15px;
 	box-sizing: border-box;
-	color: var(--textColor);
 	cursor: pointer;
 	display: inline-block;
+	
+	color: var(--textColor);
+	padding: var(--baseFontSize);
 	font-family: var(--sysFont);
 	font-size: var(--baseFontSize);
-	font-weight: bold;
-	text-shadow: 0 0 calc(var(--baseFontSize) * 0.25) black;
-	
-	line-height: normal;
-	margin-top: 0;
+	text-shadow: 0 0 var(--fontShadowSize) black;
 	margin-right: calc(var(--baseFontSize) * 0.5);
 	margin-left: calc(var(--baseFontSize) * 0.5);
 	
+	margin-top: 0;
+	font-weight: bold;
+	line-height: normal;
+	
 	min-height: 60px;
-	min-width: 1em;
+	min-width: var(--baseFontSize);
 	outline: none;
-	padding: 16px 24px;
 	text-align: center;
 	text-decoration: none;
 	transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
@@ -135,8 +134,20 @@ h3
 	will-change: transform;
 }
 .socialButton:disabled { pointer-events: none; }
-.socialButton:hover { box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px; transform: translateY(-0.25rem); }
-.socialButton:active { box-shadow: none; transform: translateY(0); }
+.socialButton:hover 
+{ 
+	box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px; 
+	
+	transform: translateY(calc(var(--baseFontSize) * -0.25)); 
+	text-shadow: 0 0 var(--fontShadowSize) black;
+}
+.socialButton:active 
+{ 
+	box-shadow: none; 
+	transform: translateY(0);
+	
+	text-shadow: 0 0 var(--fontShadowSize) black;
+}
 
 footer
 {
@@ -146,47 +157,121 @@ footer
 	text-align: center;
 }
 
+hr 
+{
+	border: none;
+	border-top: 0.25em double var(--textColor);
+	color: var(--textColor);
+	overflow: visible;
+	text-align: center;
+	height: var(--baseFontSize);
+}
+hr::after 
+{
+  background: var(--background);
+  content: '§';
+  padding: 0 var(--fontShadowSize);
+  position: relative;
+  top: -13px;
+}
+
+.container
+{ 
+	float:left;
+	width:90%; 
+	margin: var(--baseFontSize);
+	align-content: center;
+	text-align: center;
+	vertical-align: text-top;
+}
+#image 
+{
+	float: left;
+	width: 49%;
+	/*border: solid red;*/
+	
+	display: flex;
+	flex-flow: column;
+}
+#image img 
+{ 
+	max-width: 100%; 
+	margin: calc(var(--baseFontSize)*0.5) 0;
+	
+	border-style: outset;
+	border-top-color: var(--lightBackground);
+	border-left-color: #34314c;
+	border-right-color: (--lightBackground);
+	border-bottom-color: #34314c;
+}
+#content 
+{ 
+	float: right; 
+	width: 49%; 	
+	/*border: solid green;*/
+	
+	display: flex;
+	flex-flow: column;
+}
+
+@media only screen and (max-width: 480px) 
+{
+	#image,#content 
+	{ 
+		width:100%;
+		margin-left: auto;
+		margin-right: auto;
+		align-content: center;
+	} 
+}
+
 .topnav 
 {
-  background-color: var(--headerBackground);
-  overflow: hidden;
+	background-color: var(--navbarBackground);
+	overflow: hidden;
 }
 /* Style the links inside the navigation bar */
 .topnav a 
 {
-  float: left;
-  color: var(--textColor);
-  font-family: var(--sysFontSS);
-  padding: var(--baseFontSize);
-  font-size: var(--baseFontSize);
-  
-  text-align: center;
-  text-decoration: none;
+	color: var(--textColor);
+	font-family: var(--sysFontSS);
+	padding: var(--baseFontSize);
+	font-size: var(--baseFontSize);
+	text-shadow: 0 0 var(--fontShadowSize) black;
+	
+	float: left;
+	text-align: center;
+	text-decoration: none;
 }
 /* Change the color of links on hover */
 .topnav a:hover 
 {
-  background-color: #ddd;
-  color: #3D2C29;
+	background-color: var(--textColor);
+	color: var(--background);
+	text-shadow: 0 0 var(--fontShadowSize) black;
 }
 /* Add a color to the active/current link */
-.topnav a.active { background-color: #879721; color: var(--textColor); }
+.topnav a.active 
+{ 
+	background-color: var(--navbarForeground); 
+	color: var(--textColor); 
+	text-shadow: 0 0 var(--fontShadowSize) black;
+}
 
 ul
 {
+	margin: var(--baseFontSize) auto;
+	color: var(--textColor);
+	font-family: var(--sysFontSS);
+	font-size: var(--baseFontSize);
+	text-shadow: 0 0 var(--fontShadowSize) black;
+	padding: var(--baseFontSize);
+	
 	list-style-type: none;
 	list-style-position: inside;
 	text-align: center;
 	
 	display: table;
-	margin: var(--baseFontSize) auto;
 	align-content: center;
-	
-	color: var(--textColor);
-	font-family: var(--sysFontSS);
-	font-size: var(--baseFontSize);
-	text-shadow: 0 0 calc(var(--baseFontSize) * 0.25) black;
-	
-	padding: var(--relBaseFontSize);
 }
-li { padding: calc(var(--relBaseFontSize) * 0.25); }
+li { padding: calc(var(--baseFontSize) * 0.25); }
