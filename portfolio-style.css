@@ -254,20 +254,16 @@ hr::after
 	font-weight: bold;
 }
 
-ul
-{
-	margin: var(--baseFontSize) auto;
+li 
+{ 
+	margin: auto;
 	color: var(--textColor);
 	font-family: var(--fontFamSS);
 	font-size: var(--baseFontSize);
 	text-shadow: 0 0 var(--fontShadowSize) black;
-	padding: var(--baseFontSize);
 	
-	list-style-type: none;
+	list-style-type: square;
 	list-style-position: inside;
-	text-align: center;
-	
-	display: table;
-	align-content: center;
+	text-align: left;
 }
-li { padding: calc(var(--baseFontSize) * 0.25); }
+li::marker { color: var(--textColor); }
