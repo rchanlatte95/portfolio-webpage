@@ -10,7 +10,7 @@
 	--linkActive: #98c379;
 	
 	--textColor: #FFFFF0;
-	--baseFontSize: 1.256rem;
+	--baseFontSize: 1.256em;
 	
 	--hdrOneSize: calc(var(--baseFontSize) * 2.5);
 	--hdrTwoSize: calc(var(--baseFontSize) * 2.0);
