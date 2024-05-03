@@ -49,11 +49,10 @@ footer
 
 	text-align: center;
 	align-content: center;
-	
-	border: solid blue;
+
 }
 
-footerDiv
+.footerDiv
 {
 	text-align: center; 
 	align-content: center;
