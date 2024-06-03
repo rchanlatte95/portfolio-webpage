@@ -15,6 +15,7 @@
 	--hdrOneSize: calc(var(--baseFontSize) * 2.5);
 	--hdrTwoSize: calc(var(--baseFontSize) * 2.0);
 	--hdrThreeSize: calc(var(--baseFontSize) * 1.5);
+	--hdrFourSize: calc(var(--baseFontSize) * 1.15);
 	
 	--fontShadowSize: calc(var(--baseFontSize) * 0.1);
 	--footerSize: calc(var(--baseFontSize) * 4);
@@ -125,6 +126,17 @@ h3
 	line-height: 1.5em;
 }
 
+h4
+{
+	color: var(--textColor);
+	font-family: var(--fontFamSS);
+	font-size: var(--hdrFourSize);
+	text-shadow: 0 0 calc(var(--fontShadowSize) * 1.05) black;
+	
+	text-align: center;
+	line-height: 1.5em;
+}
+
 .socialButton
 {
 	appearance: none;
@@ -187,6 +199,28 @@ hr::after
   position: relative;
   top: -13px;
 }
+
+.articleImgDiv
+{ 
+  margin-left:auto;
+  margin-right:auto;
+  text-align: center;
+}
+
+.articleImgBorder img
+{
+	max-width: 18rem;
+	max-height: 100%; 
+	display: block; 
+	margin: auto; 
+	
+	border-style: outset;
+	border-top-color: var(--lightBackground);
+	border-left-color: #34314c;
+	border-right-color: (--lightBackground);
+	border-bottom-color: #34314c;
+}
+
 
 .container
 { 
@@ -314,6 +348,7 @@ hr::after
 li 
 { 
 	margin: auto;
+	padding: 0 var(--baseFontSize);
 	color: var(--textColor);
 	font-family: var(--fontFamSS);
 	font-size: var(--baseFontSize);
@@ -341,3 +376,59 @@ li::marker { color: var(--textColor); }
 	list-style-position: inside;
 	text-align: center;
 }
+
+.olCenter 
+{
+	text-align: center;
+	list-style-position: inside;
+}
+
+.centerOL li
+{
+	color: var(--textColor);
+	font-family: var(--fontFamSS);
+	font-size: var(--baseFontSize);
+	text-shadow: 0 0 var(--fontShadowSize) black;
+	
+	font-weight: normal;
+	text-align: left;
+	line-height: 2rem;
+	
+	list-style-type: decimal;
+	list-style-position: outside;
+	text-align: left ;
+	max-width:48ch;
+}
+.centerOL li li { font-size: 96%; list-style-type:lower-alpha; }
+.centerOL li li li { font-size: 96%;  list-style-type:lower-roman; }
+.centerOL li li li li { font-size: 96%; }
+.centerOL li li li li li { font-size: 96%; }
+.centerOL li::marker { color: var(--textColor); }
+
+.ulCenter 
+{
+	text-align: center;
+	list-style-position: inside;
+}
+
+.ulCenter li
+{
+	color: var(--textColor);
+	font-family: var(--fontFamSS);
+	font-size: var(--baseFontSize);
+	text-shadow: 0 0 var(--fontShadowSize) black;
+	
+	font-weight: normal;
+	text-align: left;
+	line-height: 2rem;
+	
+	list-style-type: decimal;
+	list-style-position: outside;
+	text-align: left ;
+	max-width:48ch;
+}
+.ulCenter li li { font-size: 96%; list-style-type:lower-alpha; }
+.ulCenter li li li { font-size: 96%;  list-style-type:lower-roman; }
+.ulCenter li li li li { font-size: 96%; }
+.ulCenter li li li li li { font-size: 96%; }
+.ulCenter li::marker { color: var(--textColor); }

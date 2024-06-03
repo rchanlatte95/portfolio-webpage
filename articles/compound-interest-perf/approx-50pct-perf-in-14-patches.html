@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+	<meta name="description" content="Ryan Chanlatte Portfolio">
+	
+	<meta name="keywords" content="Ryan Chanlatte, Portfolio, C, C++, C#, Programming, Code, Game Development, Video Games, Aesthetics, Art, Video games as art">
+    
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../../portfolio-style.css" />
+    <title>~50% perf in 14 patches</title>
+</head>
+
+<body>
+
+<div class="topnav">
+  <a href="../../index.html">About</a>
+  <a href="../../Projects.html">Projects</a>
+  <a class="active" href="../../Articles.html">Articles</a>
+</div>
+
+<h1>
+	~50% Performance Improvement in 14 patches
+</h1>
+<h4>
+	Don't underestimate small gains (or losses)
+</h4>
+<div class="articleImgDiv"> 
+	<div class="articleImgBorder">
+		<img class="articleImg" src="../../ordered-events.jpg">
+	</div>
+</div>
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;It's said that a program tends to spend 90% of its time in 10% of its codebase. When people approach optimization they overfocus on the hot path, which is usually a specific function or loop. This is worthwhile and useful, but you shouldn't leave smaller gains in the remaining 10%. Those small gains can snowball into bigger ones given enough of them.
+</p>
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;Most software performance improvements are measured in terms of percentages and most of those are iterative in nature. Meaning, programmers will iterate over a piece of code, racking up performance improvements (ideally) per iteration before moving on. 
+</p>
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;There is a problem, though. How many small patches would it take to reach a satisfiable level of performance? How large (or small) of a change could we reasonably expect from a finite number of patches?
+</p>
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;One can understand this process in terms of a, slightly modified, <a href="https://www.math.uni.edu/~campbell/mdm/comp.html">annual compound interest formula</a>:
+</p>
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;Let's make sense of this. Our principal is the baseline of whatever metric we wish to optimize. Let's say, execution time, memory usage, etc. For simplicity's sake, let's make it one. Percentage change per patch, is the change to our baseline per patch. P is the number of patches. Be aware that these percentage changes are specific to your benchmarking suite. I suggest using robust benchmarking libraries for whatever language that your team deems most reliable.
+</p>
+
+<p>
+Using this, developers can answer a couple of useful questions:
+</p>
+
+<ol class="centerOL">
+   <li>
+		How many patches would it take to improve performance by x%?
+		<ol>
+			<li>
+				Assuming a reduction of 5% per patch (a delta percentage of -0.05), it'd take approximately 14 patches to achieve an aggregate ~50% reduction in whatever metric you are trying to optimize.
+			</li>
+		</ol>
+	</li>
+   <li>
+		How much performance would we need to gain, per patch, before we've reached our goal?
+		<ol>
+			<li>
+				Suppose we have five patches before we ship and we want to reduce runtime by 10%. We'd need to reduce runtime by 2.5% (-0.025), per patch, to accomplish this.
+			</li>
+		</ol>
+	</li>
+</ol>
+
+
+<p>
+Despite the caveats, here are some advantages of this approach:
+</p>
+<ol class="centerOL">
+   <li>
+		It can help facilitate the creation of performance plans that have concrete goals and expectations, with approximate timelines.
+	</li>
+   <li>
+		For many, any performance oriented consideration is intractable. An approximate performance gain of ~50% does not have to be a herculean effort. Instead, it can be done in a handful of patches.
+	</li>
+	<li>
+		For performance oriented developers, it can be challenging to argue for performance improvements and that is partially on us. Being able to at least give estimates and provide expectations can help assuage concerns for those developers who give performance very little thought.
+	</li>
+</ol>
+
+</body>
+
+<p> ⠀ </p>
+
+<footer>
+<div style="footerDiv">
+	<a 	href="https://www.linkedin.com/in/ryan-a-chanlatte/" 
+		class="socialButton" 
+		role="button"
+		style="background-color: #0077B5">
+		LinkedIn
+	</a>
+	<a 	href="https://github.com/rchanlatte95" 
+		class="socialButton" 
+		role="button"
+		style="background-color: #171515">
+		Github
+	</a>
+</div>
+</footer>
+
+</html>
