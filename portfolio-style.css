@@ -10,7 +10,8 @@
 	--linkActive: #98c379;
 	
 	--textColor: #FFFFF0;
-	--baseFontSize: 1.256em;
+	--baseFontSize: 1.256rem;
+	--twiceFontSize: calc(var(--baseFontSize) * 2.0);
 	
 	--hdrOneSize: calc(var(--baseFontSize) * 2.5);
 	--hdrTwoSize: calc(var(--baseFontSize) * 2.0);
@@ -25,14 +26,27 @@
 	--fontFamSS:  monospace, monospace, system-ui, sans-serif;
 }
 
+html 
+{
+   margin: 0px;
+   height: 100%;
+   width: 100%;
+}
+
 body
 {
 	position: relative;
 	min-height: 100%;
+	min-width: 56.25%;
+	
+	margin: 0 auto;
+
+	/*
 	margin-left: 0;
 	margin-right: 0;
 	margin-top: 0;
 	margin-bottom: var(--footerSize);
+	*/
 	padding-bottom: var(--footerSize);
 	background: var(--background);
 }
@@ -77,7 +91,7 @@ p
 	
 	font-weight: normal;
 	text-align: left;
-	line-height: 1.5em;
+	line-height: var(--twiceFontSize);
 	
 	/*
 	NOTE(RYAN_2024-04-30): 	I wanted 80 characters per line but it was going over
@@ -96,6 +110,11 @@ p
 	margin-top: calc(var(--baseFontSize) * 1.5);
 }
 
+.math
+{
+	margin: 3rem auto;
+}
+
 h1 
 {
 	color: var(--textColor);
@@ -103,8 +122,9 @@ h1
 	font-size: var(--hdrOneSize);
 	text-shadow: 0 0 calc(var(--fontShadowSize) * 2) black;
 	
+
 	text-align: center;	
-	line-height: 1.5em;
+	line-height: var(--hdrOneSize);
 }
 h2 
 {
@@ -114,7 +134,7 @@ h2
 	text-shadow: 0 0 calc(var(--fontShadowSize) * 1.5) black;
 	
 	text-align: center;
-	line-height: 1.5em;
+	line-height: var(--hdrTwoSize);
 }
 h3 
 {
@@ -124,7 +144,7 @@ h3
 	text-shadow: 0 0 calc(var(--fontShadowSize) * 1.25) black;
 	
 	text-align: center;
-	line-height: 1.5em;
+	line-height: var(--hdrThreeSize);
 }
 h4
 {
@@ -134,7 +154,7 @@ h4
 	text-shadow: 0 0 calc(var(--fontShadowSize) * 1.05) black;
 	
 	text-align: center;
-	line-height: 1.5em;
+	line-height: var(--hdrFourSize);
 }
 h5
 {
@@ -144,7 +164,7 @@ h5
 	text-shadow: 0 0 calc(var(--fontShadowSize) * 1.05) black;
 	
 	text-align: center;
-	line-height: 1rem;
+	line-height: var(--hdrFiveSize);
 }
 
 .socialButton
@@ -231,14 +251,14 @@ hr::after
 
 .articleImgDiv
 { 
-  margin-left:auto;
-  margin-right:auto;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
 }
 
 .articleImgBorder img
 {
-	max-width: 18rem;
+	max-width: 64ch;
 	max-height: 100%; 
 	display: block; 
 	margin: auto; 
@@ -250,16 +270,20 @@ hr::after
 	border-bottom-color: #34314c;
 }
 
-
 .container
 { 
 	float:left;
-	width:90%; 
+	width:97%; 
 	margin: var(--baseFontSize);
 	align-content: center;
 	text-align: center;
 	vertical-align: text-top;
+	
+	/*border-width:2px;
+	border-style:solid;
+	border-color:blue;*/
 }
+
 #image 
 {
 	display: inline-block;
@@ -323,10 +347,24 @@ hr::after
 {
 	#content, #image
 	{ 
-		width: 100%;
+		width: 98%;
 		margin: auto;
 		text-align: center;
 		align-content: center;
+	}
+	.container
+	{
+		float:left;
+		width: 90%; 
+		margin: var(--baseFontSize);
+		align-content: center;
+		text-align: center;
+		vertical-align: text-top;
+	}
+	
+	.math
+	{
+		font-size:75%;
 	}
 	
 	#image img 
@@ -382,9 +420,10 @@ li
 	font-family: var(--fontFamSS);
 	font-size: var(--baseFontSize);
 	text-shadow: 0 0 var(--fontShadowSize) black;
+	line-height: calc(var(--baseFontSize) * 1.5);	
 	
 	list-style-type: square;
-	list-style-position: inside;
+	list-style-position: outside;
 	text-align: left;
 }
 li li { font-size: 96%; }
@@ -421,7 +460,7 @@ li::marker { color: var(--textColor); }
 	
 	font-weight: normal;
 	text-align: left;
-	line-height: 2rem;
+	line-height: calc(var(--baseFontSize) * 1.5);
 	
 	list-style-type: decimal;
 	list-style-position: outside;
@@ -449,7 +488,7 @@ li::marker { color: var(--textColor); }
 	
 	font-weight: normal;
 	text-align: left;
-	line-height: 2rem;
+	line-height: calc(var(--baseFontSize) * 1.5);
 	
 	list-style-type: square;
 	list-style-position: outside;

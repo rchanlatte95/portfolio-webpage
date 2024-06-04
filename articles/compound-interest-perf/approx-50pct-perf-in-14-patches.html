@@ -9,7 +9,12 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="../../portfolio-style.css" />
-    <title>~50% perf in 14 patches</title>
+    <title>~&#xb1;50% Performance Improvement in 14 patches or less</title>
+	
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async
+		  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+	</script>
 </head>
 
 <body>
@@ -32,8 +37,8 @@
 	</div>
 </div>
 <h5>
-	Written By: Ryan Chanlatte <br/><br/>
-	Published: 2024-05-27 <br/><br/>
+	Author: Ryan Chanlatte <br/><br/>
+	Published: 2024-05-27<br/><br/>
 	Last updated: 2024-06-04 <br/><br/>
 	Special Thanks to Nitzan Wilnai and Murilo Mesquita for reviewing and proof reading.
 </h5>
@@ -50,11 +55,47 @@
 </p>
 <p>
 &nbsp;&nbsp;&nbsp;&nbsp;One can understand this process in terms of a, slightly modified, <a href="https://www.math.uni.edu/~campbell/mdm/comp.html">annual compound interest formula</a>:
+
+<div class="math">
+
+\begin{align} \Large \textcolor{white}
+{
+	\displaylines
+	{ 
+		&A&=&P(1+r)^{t} \\
+		\Rightarrow &C&=&(1 + \Delta\%_{\,per\:patch})^{p_{\,patch\:count}}
+	}
+}  
+\end{align}
+
+</div>
 </p>
 
 <p>
 &nbsp;&nbsp;&nbsp;&nbsp;Let's make sense of this. Our principal is the baseline of whatever metric we wish to optimize. Let's say, execution time, memory usage, etc. For simplicity's sake, let's make it one. Percentage change per patch, is the change to our baseline per patch. P is the number of patches. Be aware that these percentage changes are specific to your benchmarking suite. I suggest using robust benchmarking libraries for whatever language that your team deems most reliable.
 </p>
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;With some trivial algebra we can rearrange our above equation and answer the questions posed earlier:
+<div class="math">
+
+\begin{align} \Large \textcolor{white}
+{
+	\displaylines
+	{ 
+		&p_{\,patch\:count}&=&\frac{ln(C)}{ln(1+\Delta\%_{\,per\:patch})} \\
+		&\Delta\%_{\,per\:patch}&=&C^{^{\frac{1}{p_{\,patch\:count}}}}+1
+	}
+}  
+\end{align}
+</div>
+</p>
+
+<div class="articleImgDiv"> 
+	<div class="articleImgBorder">
+		<img class="articleImg" src="perf-interest-graph.jpg">
+	</div>
+</div>
 
 <p>
 Using this, developers can answer a couple of useful questions:
@@ -74,6 +115,14 @@ Using this, developers can answer a couple of useful questions:
 		<ol>
 			<li>
 				Suppose we have five patches before we ship and we want to reduce runtime by 10%. We'd need to reduce runtime by 2.5% (-0.025), per patch, to accomplish this.
+			</li>
+		</ol>
+	</li>
+	   <li>
+		How many performance regressions can we handle before we reach our tipping point?
+		<ol>
+			<li>
+				lorem ipsum.
 			</li>
 		</ol>
 	</li>
