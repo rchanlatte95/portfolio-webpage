@@ -343,7 +343,7 @@ hr::after
 	}
 }
 
-@media only screen and (max-width: 300px)
+@media only screen and (max-width: 400px)
 {
 	#content, #image
 	{ 
@@ -365,6 +365,11 @@ hr::after
 	.math
 	{
 		font-size:75%;
+	}
+	
+	.articleImg
+	{
+		width: 75%;
 	}
 	
 	#image img 
