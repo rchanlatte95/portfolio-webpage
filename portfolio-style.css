@@ -11,13 +11,14 @@
 	
 	--textColor: #FFFFF0;
 	--baseFontSize: 1.256rem;
+	--baseTxtWidth: 60rem;
 	--twiceFontSize: calc(var(--baseFontSize) * 2.0);
 	
 	--hdrOneSize: calc(var(--baseFontSize) * 2.5);
 	--hdrTwoSize: calc(var(--baseFontSize) * 2.0);
 	--hdrThreeSize: calc(var(--baseFontSize) * 1.5);
 	--hdrFourSize: calc(var(--baseFontSize) * 1.15);
-	--hdrFiveSize: calc(var(--baseFontSize) * 0.9);
+	--hdrFiveSize: 1rem;
 	
 	--fontShadowSize: calc(var(--baseFontSize) * 0.1);
 	--footerSize: calc(var(--baseFontSize) * 4);
@@ -99,7 +100,7 @@ p
 							sure why that is, but I just reduced the max-width
 							until the largest line was <= 80 characters.
 	*/
-	max-width: 64ch;
+	max-width: var(--baseTxtWidth);
 }
 .center 
 {
@@ -122,6 +123,10 @@ h1
 	font-size: var(--hdrOneSize);
 	text-shadow: 0 0 calc(var(--fontShadowSize) * 2) black;
 	
+	margin-left: auto;
+	margin-right: auto;
+	align-content: center;
+	max-width: 60rem;
 
 	text-align: center;	
 	line-height: var(--hdrOneSize);
@@ -133,6 +138,11 @@ h2
 	font-size: var(--hdrTwoSize);
 	text-shadow: 0 0 calc(var(--fontShadowSize) * 1.5) black;
 	
+	margin-left: auto;
+	margin-right: auto;
+	align-content: center;
+	max-width: 60rem;
+	
 	text-align: center;
 	line-height: var(--hdrTwoSize);
 }
@@ -142,6 +152,11 @@ h3
 	font-family: var(--fontFamSS);
 	font-size: var(--hdrThreeSize);
 	text-shadow: 0 0 calc(var(--fontShadowSize) * 1.25) black;
+		
+	margin-left: auto;
+	margin-right: auto;
+	align-content: center;
+	max-width: 60rem;
 	
 	text-align: center;
 	line-height: var(--hdrThreeSize);
@@ -152,6 +167,11 @@ h4
 	font-family: var(--fontFamSS);
 	font-size: var(--hdrFourSize);
 	text-shadow: 0 0 calc(var(--fontShadowSize) * 1.05) black;
+		
+	margin-left: auto;
+	margin-right: auto;
+	align-content: center;
+	max-width: 60rem;
 	
 	text-align: center;
 	line-height: var(--hdrFourSize);
@@ -162,9 +182,28 @@ h5
 	font-family: var(--fontFamSS);
 	font-size: var(--hdrFiveSize);
 	text-shadow: 0 0 calc(var(--fontShadowSize) * 1.05) black;
+		
+	margin-left: auto;
+	margin-right: auto;
+	align-content: center;
+	max-width: 80rem;
 	
 	text-align: center;
 	line-height: var(--hdrFiveSize);
+}
+
+table, td {
+	border: 1px solid var(--textColor);
+	border-collapse: collapse;
+	text-align:center;
+	margin: 2rem 0;
+}
+th
+{
+	border: 1px solid var(--textColor);
+	border-collapse: collapse;
+	text-align:center;
+	padding: 1rem 2rem;
 }
 
 .socialButton
@@ -279,23 +318,20 @@ hr::after
 	text-align: center;
 	vertical-align: text-top;
 	
-	/*border-width:2px;
+	/*
+	border-width:2px;
 	border-style:solid;
-	border-color:blue;*/
+	border-color:blue;
+	*/
 }
 
 #image 
 {
 	display: inline-block;
-	/*float: left; 	display: flex; 	flex-flow: column;*/
 	width: 49%;
-	
 	margin: var(--baseFontSize) 0;
-	
 	text-align: center;
 	align-content: center;
-	
-	/*border: solid red;*/
 }
 #image img 
 { 
@@ -319,6 +355,7 @@ hr::after
 	margin-right: auto;
 	align-content: right;
 }
+
 @media only screen and (max-width: 900px)
 {
 	#content, #image

@@ -37,10 +37,20 @@
 	</div>
 </div>
 <h5>
-	Author: Ryan Chanlatte <br/><br/>
-	Published: 2024-05-27<br/><br/>
-	Last updated: 2024-06-04 <br/><br/>
-	Special Thanks to Nitzan Wilnai and Murilo Mesquita for reviewing and proof reading.
+<div>
+	Author: Ryan Chanlatte
+	</br>
+	</br>
+	Special Thanks to Nitzan Wilnai and Murilo Mesquita for review.
+</div>
+<div class="container">
+	<div style="float: left; align-content: left; width: 49%; margin-left: auto; margin-right: auto;"> 
+		Published: 2024-05-27
+	</div>
+	<div style="float: right;	align-content: right; width: 49%; margin-left: auto; margin-right: auto;"> 
+		Last updated: 2024-06-04 
+	</div>
+</div>
 </h5>
 <hr class="articleBar">
 
@@ -122,7 +132,7 @@ Using this, developers can answer a couple of useful questions:
 		How many performance regressions can we handle before we reach our tipping point?
 		<ol>
 			<li>
-				lorem ipsum.
+				If we're able to tolerate a 50% increase in memory before shipping. If we had four patches prior to shipping, we would need to ensure each patch didn't exceed a 10% memory increase to ensure our goal was met.
 			</li>
 		</ol>
 	</li>
@@ -140,7 +150,41 @@ There are some important caveats to this modeling of the problem, namely:
 		These are "averaged" changes over the course of your optimization. Imagine this: suppose you're driving to the grocery store. It's 120 meters away and you get there in thirty minutes. Now, you could say your car drove straight to the store, made no stops, and your speed was constant the entire way. It's pretty trivial to declare that your speed then would be 4 meters per minute or 0.24 kilometers per hour. In reality, we know that we have stop lights, acceleration of the vehicle from those starts and stops. Maybe a pedestrian got in the way, or perhaps a train interrupted our journey for some minutes. In either case, the "average" speed would be the same, but the speed over the course of the trip would vary. This can be the case with our performance changes as well. Not every patch is going to follow this invariant value, per patch. It's usually more like 6% here, 2% there, etc.; however, the end result is still the same. The formulas above do not consider these realities.
 	</li>
 	<li>
-		When considering a reduction in some metric, the number of patches a team would need to commit increases significantly as the reduction gets large. This matches the intuition that optimization takes resources in exchange for some change while eventually leading to diminishing returns.
+		When considering a reduction in some metric, the number of patches a team would need to commit increases significantly as the reduction gets large. This matches the intuition that optimization takes resources in exchange for some change while eventually leading to diminishing returns:
+		<table>
+			<tr>
+				<th>Patch Count</th>
+				<th>+0.05%</br>per patch</th>
+				<th>-0.05%</br>per patch</th>
+			</tr>
+			<tr>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>2</td>
+			</tr>
+			<tr>
+				<td>3</td>
+			</tr>
+			<tr>
+				<td>5</td>
+			</tr>
+			<tr>
+				<td>10</td>
+			</tr>
+			<tr>
+				<td>25</td>
+			</tr>
+			<tr>
+				<td>50</td>
+			</tr>
+			<tr>
+				<td>100</td>
+			</tr>
+		</table>
 	</li>
 	<li>
 		One can also model potential regressions using the same model. By having the percentage change be positive, one can estimate the effect of compounding increases in whatever metric you wish to measure.
