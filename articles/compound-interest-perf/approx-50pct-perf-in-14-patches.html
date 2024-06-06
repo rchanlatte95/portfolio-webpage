@@ -150,7 +150,7 @@ There are some important caveats to this modeling of the problem, namely:
 		These are "averaged" changes over the course of your optimization. Imagine this: suppose you're driving to the grocery store. It's 120 meters away and you get there in thirty minutes. Now, you could say your car drove straight to the store, made no stops, and your speed was constant the entire way. It's pretty trivial to declare that your speed then would be 4 meters per minute or 0.24 kilometers per hour. In reality, we know that we have stop lights, acceleration of the vehicle from those starts and stops. Maybe a pedestrian got in the way, or perhaps a train interrupted our journey for some minutes. In either case, the "average" speed would be the same, but the speed over the course of the trip would vary. This can be the case with our performance changes as well. Not every patch is going to follow this invariant value, per patch. It's usually more like 6% here, 2% there, etc.; however, the end result is still the same. The formulas above do not consider these realities.
 	</li>
 	<li>
-		When considering a reduction in some metric, the number of patches a team would need to commit increases significantly as the reduction gets large. This matches the intuition that optimization takes resources in exchange for some change while eventually leading to diminishing returns (never hitting zero):
+		When considering a reduction in some metric, the number of patches a team would need to commit increases significantly as the reduction gets large. This matches the intuition that optimization takes resources in exchange for some change while eventually leading to diminishing returns:
 		<table>
 			<tr>
 				<th>Patch Count</th>
@@ -198,6 +198,8 @@ There are some important caveats to this modeling of the problem, namely:
 				<td>0.005</td>
 			</tr>
 		</table>
+		
+		In essence, if we choose runtime as a metric, there is no number of patches that will lead to instaneous execution. On the otherhand, a ton of poor patches do have an depreciative effect, but it takes a few before one may notice. Both of these outcomes match intuition.
 	</li>
 	<li>
 		One can also model potential regressions using the same model. By having the percentage change be positive, one can estimate the effect of compounding increases in whatever metric you wish to measure.
