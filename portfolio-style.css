@@ -11,7 +11,7 @@
 	
 	--textColor: #FFFFF0;
 	--baseFontSize: 1.256rem;
-	--baseTxtWidth: 60rem;
+	--baseTxtWidth: 50rem;
 	--twiceFontSize: calc(var(--baseFontSize) * 2.0);
 	
 	--hdrOneSize: calc(var(--baseFontSize) * 2.5);
