@@ -9,6 +9,9 @@
 	
 	--linkActive: #98c379;
 	
+	--aspect: calc(16 / 9);
+	--invAspect: calc(1 / (var(--aspect)));
+	
 	--textColor: #FFFFF0;
 	--baseFontSize: 1.256rem;
 	--baseTxtWidth: 50rem;
@@ -37,19 +40,24 @@ html
 body
 {
 	position: relative;
-	min-height: 100%;
-	min-width: 56.25%;
+	
+	max-width: 99%;
+	max-height: 99%;
+	
+	min-width: 55.6875%;
 	
 	margin: 0 auto;
-
-	/*
-	margin-left: 0;
-	margin-right: 0;
-	margin-top: 0;
-	margin-bottom: var(--footerSize);
-	*/
 	padding-bottom: var(--footerSize);
 	background: var(--background);
+	/*border: 5px solid red;*/
+}
+
+.centerContainer
+{
+	margin: 1rem auto;
+	max-width: 96rem;
+	padding-bottom: 2rem;
+	/*border: 5px solid red;*/
 }
 
 footer
@@ -62,11 +70,11 @@ footer
 	fix it.
 	*/
 	width: 99%;
+	height: 99%;
 	margin-left: 0.25%;
 
 	text-align: center;
 	align-content: center;
-
 }
 
 .footerDiv
@@ -317,6 +325,24 @@ hr::after
 	align-content: center;
 	text-align: center;
 	vertical-align: text-top;
+	
+	/*
+	border-width:2px;
+	border-style:solid;
+	border-color:blue;
+	*/
+}
+
+.botBorderContainer
+{ 
+	float:left;
+	width:97%; 
+	margin: var(--baseFontSize);
+	align-content: center;
+	text-align: center;
+	vertical-align: text-top;
+	padding-bottom: 1rem; 
+	border-bottom: 4px double var(--textColor);
 	
 	/*
 	border-width:2px;
