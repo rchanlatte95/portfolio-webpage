@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />   
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../portfolio-style.css" />
+	
+	<meta name="description" content="Performance as interest.">
+	<meta name="keywords" content="Ryan Chanlatte, C, C++, C#, Programming, Code, Game Development, Performance, Optimization">
+	<title>&#xb1;50% Performance in 14 patches or less</title>
+	<link rel="icon" type="image/x-icon" href="../gwem.ico">
+	
+	<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script"
+		  defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+	</script>
+</head>
+
+<body>
+
+<div class="topnav">
+  <a href="../index.html">About</a>
+  <a href="../Projects.html">Projects</a>
+  <a class="active" href="../Articles.html">Articles</a>
+</div>
+
+<div class="centerContainer">
+
+<h1>
+	&#xb1;50% Performance in 14 patches or less
+</h1>
+<h4>
+	Don't underestimate small gains/losses
+</h4>
+<div class="articleImgDiv"> 
+	<div class="articleImgBorder">
+		<img class="articleImg" src="imgs/kawaii-monke.jpg" alt="cute baby monkey determined to optimize code." style="width: 587; height: 504;">
+	</div>
+</div>
+<h5>
+<div>
+	Author: Ryan Chanlatte
+	</br>
+	</br>
+	Special Thanks to 
+	<a href="https://www.linkedin.com/in/nitzanwilnai/">Nitzan Wilnai</a> and 
+	<a href="https://www.linkedin.com/in/murilomesquita/"> Murilo Mesquita</a> for review.
+</div>
+<div class="botBorderContainer">
+	<div style="float: left; align-content: left; width: 49%; margin-left: auto; margin-right: auto;"> 
+		Published: 2024-05-27
+	</div>
+	<div style="float: right;	align-content: right; width: 49%; margin-left: auto; margin-right: auto;"> 
+		Last updated: 2024-06-06 
+	</div>
+</div>
+</h5>
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;It's said that a program tends to spend 90% of its time in 10% of its codebase. When people approach optimization they overfocus on the hot path, which is usually a specific function or loop. This is worthwhile and useful, but you shouldn't leave smaller gains in the remaining 10%. Those small gains can snowball into bigger ones given enough of them.
+</p>
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;Most software performance improvements are measured in terms of percentages and most of those are iterative in nature. Meaning, programmers will iterate over a piece of code, racking up performance improvements (ideally) per iteration before moving on. 
+</p>
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;There is a problem, though. How many small patches would it take to reach a satisfiable level of performance? How large (or small) of a change could we reasonably expect from a finite number of patches?
+</p>
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;One can understand this process in terms of a, slightly modified, <a href="https://www.math.uni.edu/~campbell/mdm/comp.html">annual compound interest formula</a>:
+
+<div class="math">
+
+\begin{align} \Large \textcolor{white}
+{
+	\displaylines
+	{ 
+		&A&=&P(1+r)^{t} \\
+		\Rightarrow &C&=&(1 + \Delta\%_{\,per\:patch})^{p_{\,patch\:count}}
+	}
+}  
+\end{align}
+
+</div>
+</p>
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;Let's make sense of this. Our principal is the baseline of whatever metric we wish to optimize. Let's say, execution time, memory usage, etc. For simplicity's sake, let's make it one. Percentage change per patch, is the change to our baseline per patch. P is the number of patches. Be aware that these percentage changes are specific to your benchmarking suite. I suggest using robust benchmarking libraries for whatever language that your team deems most reliable.
+</p>
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;With some trivial algebra we can rearrange our above equation and answer the questions posed earlier:
+<div class="math">
+
+\begin{align} \Large \textcolor{white}
+{
+	\displaylines
+	{ 
+		&p_{\,patch\:count}&=&\frac{ln(C)}{ln(1+\Delta\%_{\,per\:patch})} \\
+		&\Delta\%_{\,per\:patch}&=&C^{^{\frac{1}{p_{\,patch\:count}}}}+1
+	}
+}  
+\end{align}
+</div>
+</p>
+
+<div class="articleImgDiv"> 
+	<div class="articleImgBorder">
+		<img class="articleImg" src="imgs/perf-interest-graph.png" alt="graph displaying the slightly modified annual compound interest formula" style="max-width: 1080; max-height: 1080; width: 1080; height: 1080; min-width: 300; min-height: 300;">
+	</div>
+</div>
+
+<p>
+Using this, developers can answer a couple of useful questions:
+</p>
+
+<ol class="centerOL">
+   <li>
+		How many patches would it take to improve performance by x%?
+		<ol>
+			<li>
+				Assuming a reduction of 5% per patch (a delta percentage of -0.05), it'd take approximately 14 patches to achieve an aggregate ~50% reduction in whatever metric you are trying to optimize.
+			</li>
+		</ol>
+	</li>
+   <li>
+		How much performance would we need to gain, per patch, before we've reached our goal?
+		<ol>
+			<li>
+				Suppose we have five patches before we ship and we want to reduce runtime by 10%. We'd need to reduce runtime by 2.5% (-0.025), per patch, to accomplish this.
+			</li>
+		</ol>
+	</li>
+	   <li>
+		How many performance regressions can we handle before we reach our tipping point?
+		<ol>
+			<li>
+				If we're able to tolerate a 50% increase in memory before shipping; and, four patches before we shipped we would need to ensure each patch didn't exceed a 10% memory increase to ensure our goal was met.
+			</li>
+		</ol>
+	</li>
+</ol>
+
+<p>
+There are some important caveats to this modeling of the problem, namely:
+</p>
+
+<ul class="ulCenter">
+	<li>
+		These are theoretical predictions to a change in your chosen metric. Obviously there is a range in terms of the realized change of whatever quantity you've selected. That said, assuming your benchmarking suite is robust, I anticipate these results to track quite close to the observed result. 
+	</li>
+	<li>
+		These are "averaged" changes over the course of your optimization. Imagine this: suppose you're driving to the grocery store. It's 120 meters away and you get there in thirty minutes. Now, you could say your car drove straight to the store, made no stops, and your speed was constant the entire way. It's pretty trivial to declare that your speed then would be 4 meters per minute or 0.24 kilometers per hour. In reality, we know that we have stop lights, acceleration of the vehicle from those starts and stops. Maybe a pedestrian got in the way, or perhaps a train interrupted our journey for some minutes. In either case, the "average" speed would be the same, but the speed over the course of the trip would vary. This can be the case with our performance changes as well. Not every patch is going to follow this invariant value, per patch. It's usually more like 6% here, 2% there, etc.; however, the end result is still the same. The formulas above do not consider these realities.
+	</li>
+	<li>
+		When considering a reduction in some metric, the number of patches a team would need to commit increases significantly as the reduction gets large. This matches the intuition that optimization takes resources in exchange for some change while eventually leading to diminishing returns:
+		<table>
+			<tr>
+				<th>Patch Count</th>
+				<th>+0.05%</br>per patch</th>
+				<th>-0.05%</br>per patch</th>
+			</tr>
+			<tr>
+				<td>0</td>
+				<td>1.0</td>
+				<td>1.0</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>1.050</td>
+				<td>0.950</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>1.102</td>
+				<td>0.902</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>1.157</td>
+				<td>0.857</td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>1.276</td>
+				<td>0.773</td>
+			</tr>
+			<tr>
+				<td>14</td>
+				<td>1.979</td>
+				<td>0.487</td>
+			</tr>
+			<tr>
+				<td>50</td>
+				<td>11.467</td>
+				<td>0.076</td>
+			</tr>
+			<tr>
+				<td>100</td>
+				<td>131.501</td>
+				<td>0.005</td>
+			</tr>
+		</table>
+		
+		In essence, if we choose runtime as a metric, there is no number of patches that will lead to instaneous execution. On the otherhand, a ton of poor patches do have an depreciative effect, but it takes a few before one may notice. Both of these outcomes match intuition.
+	</li>
+	<li>
+		One can also model potential regressions using the same model. By having the percentage change be positive, one can estimate the effect of compounding increases in whatever metric you wish to measure.
+	</li>
+	<li>
+		Optimization is multifaceted and involves quantitative and qualitative tradeoffs. Those tradeoffs are not considered in the model.
+	</li>
+</ul>
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;In all, despite the caveats there are advantages to this approach. This method can provide a practical framework for managing performance plans more effectively. It helps set clear, achievable goals along useful for guiding systematic progress and ensuring accountability. It also demonstrates that performance gains can be realized with targeted updates, avoiding the need for extensive overhauls. Additionally, this approach supports developers focused on performance, offering them a structured way to justify enhancements. This not only aligns the team's expectations but also cultivates an environment where the value of performance optimization is recognized and embraced by all.
+</p>
+</div>
+</body>
+
+<p> ⠀ </p>
+
+<footer>
+<div style="footerDiv">
+	<a 	href="https://www.linkedin.com/in/ryan-a-chanlatte/" 
+		class="socialButton" 
+		role="button"
+		style="background-color: #0077B5">
+		LinkedIn
+	</a>
+	<a 	href="https://github.com/rchanlatte95" 
+		class="socialButton" 
+		role="button"
+		style="background-color: #171515">
+		Github
+	</a>
+</div>
+</footer>
+
+</html>
