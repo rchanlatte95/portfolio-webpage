@@ -58,10 +58,7 @@
 </h5>
 
 <p>
-&nbsp;&nbsp;&nbsp;&nbsp;It's said that a program tends to spend 90% of its time in 10% of its codebase. When people approach optimization they overfocus on the hot path, which is usually a specific function or loop. This is worthwhile and useful, but you shouldn't leave smaller gains in the remaining 10%. Those small gains can snowball into bigger ones given enough of them.
-</p>
-<p>
-&nbsp;&nbsp;&nbsp;&nbsp;Most software performance improvements are measured in terms of percentages and most of those are iterative in nature. Meaning, programmers will iterate over a piece of code, racking up performance improvements (ideally) per iteration before moving on. 
+&nbsp;&nbsp;&nbsp;&nbsp;It's said that a program tends to spend 90% of its time in 10% of its codebase. When people approach optimization they overfocus on the hot path, which is usually a specific function or loop. This is worthwhile and useful, but you shouldn't leave smaller gains in the remaining 10%. Those small gains can snowball into bigger ones given enough of them; but, how do we reason about that? How many regressions does it take until we reach our breaking point? How much performance do we need to gain, per patch, to reach an agreed upon target? Well, by reframing the problem, we can tackle some of those questions.
 </p>
 <p>
 &nbsp;&nbsp;&nbsp;&nbsp;There is a problem, though. How many small patches would it take to reach a satisfiable level of performance? How large (or small) of a change could we reasonably expect from a finite number of patches?
@@ -76,7 +73,7 @@
 	\displaylines
 	{ 
 		&A&=&P(1+r)^{t} \\
-		\Rightarrow &C&=&(1 + \Delta\%_{\,per\:patch})^{p_{\,patch\:count}}
+		\Rightarrow &\Delta_{\;change\,in\,baseline}&=&(1 + d\,\%_{\,per\:patch})^{p_{\,patch\:count}}
 	}
 }  
 \end{align}
@@ -85,7 +82,7 @@
 </p>
 
 <p>
-&nbsp;&nbsp;&nbsp;&nbsp;Let's make sense of this. Our principal is the baseline of whatever metric we wish to optimize. Let's say, execution time, memory usage, etc. For simplicity's sake, let's make it one. Percentage change per patch, is the change to our baseline per patch. P is the number of patches. Be aware that these percentage changes are specific to your benchmarking suite. I suggest using robust benchmarking libraries for whatever language that your team deems most reliable.
+&nbsp;&nbsp;&nbsp;&nbsp;Let's make sense of this. Our principal is the baseline of whatever metric we wish to optimize. Let's say, execution time, memory usage, etc. For simplicity's sake, let's make it one so we can ignore it for now. \(\Delta\) is the resultant change to our baseline, \(p\) is the number of patches, and \( d\,\% \) is the target percentage change per patch (as measured by your benchmarking suite of choice).
 </p>
 
 <p>
@@ -96,8 +93,8 @@
 {
 	\displaylines
 	{ 
-		&p_{\,patch\:count}&=&\frac{ln(C)}{ln(1+\Delta\%_{\,per\:patch})} \\
-		&\Delta\%_{\,per\:patch}&=&C^{^{\frac{1}{p_{\,patch\:count}}}}+1
+		&p&=&\frac{ln(\Delta)}{ln(1+d\,\%)} \\
+		&d\,\%&=&\Delta^{^{\frac{1}{p}}}+1
 	}
 }  
 \end{align}
@@ -108,6 +105,10 @@
 	<div class="articleImgBorder">
 		<img class="articleImg" src="imgs/perf-interest-graph.png" alt="graph displaying the slightly modified annual compound interest formula" style="max-width: 1080; max-height: 1080; width: 1080; height: 1080; min-width: 300; min-height: 300;">
 	</div>
+	
+	<p class="articleImgCaption">
+	Note: The scale difference between X and Y axises.
+	</p>
 </div>
 
 <p>
@@ -147,18 +148,18 @@ There are some important caveats to this modeling of the problem, namely:
 
 <ul class="ulCenter">
 	<li>
-		These are theoretical predictions to a change in your chosen metric. Obviously there is a range in terms of the realized change of whatever quantity you've selected. That said, assuming your benchmarking suite is robust, I anticipate these results to track quite close to the observed result. 
+		These are theoretical predictions to a change in your chosen metric. Obviously there is a range for the realized change in whatever quantity you've selected. That said, I anticipate these results to track quite close to the observed result. 
 	</li>
 	<li>
-		These are "averaged" changes over the course of your optimization. Imagine this: suppose you're driving to the grocery store. It's 120 meters away and you get there in thirty minutes. Now, you could say your car drove straight to the store, made no stops, and your speed was constant the entire way. It's pretty trivial to declare that your speed then would be 4 meters per minute or 0.24 kilometers per hour. In reality, we know that we have stop lights, acceleration of the vehicle from those starts and stops. Maybe a pedestrian got in the way, or perhaps a train interrupted our journey for some minutes. In either case, the "average" speed would be the same, but the speed over the course of the trip would vary. This can be the case with our performance changes as well. Not every patch is going to follow this invariant value, per patch. It's usually more like 6% here, 2% there, etc.; however, the end result is still the same. The formulas above do not consider these realities.
+		These are "averaged" changes over the course of your optimization, similar to your overall speed during your commute to work on a typical day. As a given, not every patch is going to follow this invariant value, per patch. It's usually more like 6% here, 2% there, etc.; however, the end result is still the same.
 	</li>
 	<li>
-		When considering a reduction in some metric, the number of patches a team would need to commit increases significantly as the reduction gets large. This matches the intuition that optimization takes resources in exchange for some change while eventually leading to diminishing returns:
+		When considering a reduction in some metric, the number of patches a team would need to commit increases significantly as the reduction gets large:
 		<table>
 			<tr>
-				<th>Patch Count</th>
-				<th>+0.05%</br>per patch</th>
-				<th>-0.05%</br>per patch</th>
+				<th>\(p\)</br>Patch Count</th>
+				<th>\(d\)</br>+0.05%</br>per patch</th>
+				<th>\(d\)</br>-0.05%</br>per patch</th>
 			</tr>
 			<tr>
 				<td>0</td>
@@ -202,18 +203,12 @@ There are some important caveats to this modeling of the problem, namely:
 			</tr>
 		</table>
 		
-		In essence, if we choose runtime as a metric, there is no number of patches that will lead to instaneous execution. On the otherhand, a ton of poor patches do have an depreciative effect, but it takes a few before one may notice. Both of these outcomes match intuition.
-	</li>
-	<li>
-		One can also model potential regressions using the same model. By having the percentage change be positive, one can estimate the effect of compounding increases in whatever metric you wish to measure.
-	</li>
-	<li>
-		Optimization is multifaceted and involves quantitative and qualitative tradeoffs. Those tradeoffs are not considered in the model.
+		In essence, if we choose runtime as a metric, there is no number of patches that will lead to instaneous execution. On the otherhand, a ton of poor patches do have a depreciative effect, and it doesn't take that many before it can get concerning. Both of these outcomes match intuition.
 	</li>
 </ul>
 
 <p>
-&nbsp;&nbsp;&nbsp;&nbsp;In all, despite the caveats there are advantages to this approach. This method can provide a practical framework for managing performance plans more effectively. It helps set clear, achievable goals along useful for guiding systematic progress and ensuring accountability. It also demonstrates that performance gains can be realized with targeted updates, avoiding the need for extensive overhauls. Additionally, this approach supports developers focused on performance, offering them a structured way to justify enhancements. This not only aligns the team's expectations but also cultivates an environment where the value of performance optimization is recognized and embraced by all.
+&nbsp;&nbsp;&nbsp;&nbsp;In all, despite the caveats there are advantages to this approach. This method can provide a practical framework for managing performance plans more effectively. It helps set clear, achievable goals or boundaries that teams can use to navigate optimizating a codebase. Additionally, this approach supports developers focused on performance, offering them a structured way to justify enhancements or provide concrete guardrails on development trajectories.
 </p>
 </div>
 </body>

@@ -91,15 +91,39 @@ p
 	margin-left: auto;
 	margin-right: auto;
 	align-content: center;
-
+	text-align: left;
+	
 	padding: 0 var(--baseFontSize);
 	color: var(--textColor);
 	font-family: var(--fontFamSS);
 	font-size: var(--baseFontSize);
-	text-shadow: 0 0 var(--fontShadowSize) black;
-	
+	font-style: normal;
 	font-weight: normal;
-	text-align: left;
+	text-shadow: 0 0 var(--fontShadowSize) black;
+	line-height: var(--twiceFontSize);
+	
+	/*
+	NOTE(RYAN_2024-04-30): 	I wanted 80 characters per line but it was going over
+							90 characters per line, which was incorrect. I am not
+							sure why that is, but I just reduced the max-width
+							until the largest line was <= 80 characters.
+	*/
+	max-width: var(--baseTxtWidth);
+}
+.articleImgCaption
+{
+	margin-left: auto;
+	margin-right: auto;
+	align-content: center;
+	text-align: center;
+	
+	padding: 0 var(--baseFontSize);
+	color: var(--textColor);
+	font-family: var(--fontFamSS);
+	font-size: 1rem;
+	font-style: italic;
+	font-weight: lighter;
+	text-shadow: 0 0 var(--fontShadowSize) black;
 	line-height: var(--twiceFontSize);
 	
 	/*
