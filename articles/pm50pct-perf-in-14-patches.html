@@ -58,7 +58,7 @@
 </h5>
 
 <p>
-&nbsp;&nbsp;&nbsp;&nbsp;It's said that a program tends to spend 90% of its time in 10% of its codebase. When people approach optimization they overfocus on the hot path, which is usually a specific function or loop. This is worthwhile and useful, but you shouldn't leave smaller gains in the remaining 10%. Those small gains can snowball into bigger ones given enough of them; but, how do we reason about that? How many regressions does it take until we reach our breaking point? How much performance do we need to gain, per patch, to reach an agreed upon target? Well, by reframing the problem, we can tackle some of those questions.
+&nbsp;&nbsp;&nbsp;&nbsp;It's said that a program tends to spend 90% of its time in 10% of its codebase. When people approach optimization they overfocus on the hot path, which is usually a specific function or loop. This is worthwhile and useful, but you shouldn't leave smaller gains in the remaining 90%. Those small gains can snowball into bigger ones given enough of them; but, how do we reason about that? How many regressions does it take until we reach our breaking point? How much performance do we need to gain, per patch, to reach an agreed upon target? Well, by reframing the problem, we can tackle some of those questions.
 </p>
 <p>
 &nbsp;&nbsp;&nbsp;&nbsp;There is a problem, though. How many small patches would it take to reach a satisfiable level of performance? How large (or small) of a change could we reasonably expect from a finite number of patches?
@@ -209,6 +209,9 @@ There are some important caveats to this modeling of the problem, namely:
 
 <p>
 &nbsp;&nbsp;&nbsp;&nbsp;In all, despite the caveats there are advantages to this approach. This method can provide a practical framework for managing performance plans more effectively. It helps set clear, achievable goals or boundaries that teams can use to navigate optimizating a codebase. Additionally, this approach supports developers focused on performance, offering them a structured way to justify enhancements or provide concrete guardrails on development trajectories.
+</p>
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;Furthermore, circling back to the start, That remaining 90%
 </p>
 </div>
 </body>
