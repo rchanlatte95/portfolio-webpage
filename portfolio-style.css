@@ -545,6 +545,9 @@ li::marker { color: var(--textColor); }
 
 .centerOL li
 {
+	/* Adds spacing between line items. */
+	margin-bottom: var(--baseFontSize);
+	
 	color: var(--textColor);
 	font-family: var(--fontFamSS);
 	font-size: var(--baseFontSize);
@@ -573,6 +576,9 @@ li::marker { color: var(--textColor); }
 
 .ulCenter li
 {
+	/* Adds spacing between line items. */
+	margin-bottom: var(--baseFontSize);
+	
 	color: var(--textColor);
 	font-family: var(--fontFamSS);
 	font-size: var(--baseFontSize);
@@ -581,7 +587,7 @@ li::marker { color: var(--textColor); }
 	font-weight: normal;
 	text-align: left;
 	line-height: calc(var(--baseFontSize) * 1.5);
-	
+
 	list-style-type: square;
 	list-style-position: outside;
 	text-align: left ;

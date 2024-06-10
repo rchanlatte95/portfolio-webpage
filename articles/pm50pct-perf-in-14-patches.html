@@ -58,13 +58,10 @@
 </h5>
 
 <p>
-&nbsp;&nbsp;&nbsp;&nbsp;It's said that a program tends to spend 90% of its time in 10% of its codebase. When people approach optimization they overfocus on the hot path, which is usually a specific function or loop. This is worthwhile and useful, but you shouldn't leave smaller gains in the remaining 90%. Those small gains can snowball into bigger ones given enough of them; but, how do we reason about that? How many regressions does it take until we reach our breaking point? How much performance do we need to gain, per patch, to reach an agreed upon target? Well, by reframing the problem, we can tackle some of those questions.
+&nbsp;&nbsp;&nbsp;&nbsp;It's said that a program tends to spend 90% of its time in 10% of its codebase. Even amongst that 10%, developers will hyperfixate on a small fraction, usually one or two functions/loops. This is worthwhile and useful, but you shouldn't leave smaller gains elsewhere. Those small gains can snowball into bigger ones given enough of them; however, while intuitively true, how do we reason about that? How many regressions does it take until we reach our breaking point? How much performance do we need to gain, per patch, to reach an agreed upon target?
 </p>
 <p>
-&nbsp;&nbsp;&nbsp;&nbsp;There is a problem, though. How many small patches would it take to reach a satisfiable level of performance? How large (or small) of a change could we reasonably expect from a finite number of patches?
-</p>
-<p>
-&nbsp;&nbsp;&nbsp;&nbsp;One can understand this process in terms of a, slightly modified, <a href="https://www.math.uni.edu/~campbell/mdm/comp.html">annual compound interest formula</a>:
+&nbsp;&nbsp;&nbsp;&nbsp;By reframing the problem we can tackle some of those questions. Framed in terms of a, slightly modified, <a href="https://www.math.uni.edu/~campbell/mdm/comp.html">annual compound interest formula</a> we get this:
 
 <div class="math">
 
@@ -107,7 +104,7 @@
 	</div>
 	
 	<p class="articleImgCaption">
-	Note: The scale difference between X and Y axises.
+	Note the scale difference between the X-axis and Y-axis.
 	</p>
 </div>
 
@@ -151,7 +148,7 @@ There are some important caveats to this modeling of the problem, namely:
 		These are theoretical predictions to a change in your chosen metric. Obviously there is a range for the realized change in whatever quantity you've selected. That said, I anticipate these results to track quite close to the observed result. 
 	</li>
 	<li>
-		These are "averaged" changes over the course of your optimization, similar to your overall speed during your commute to work on a typical day. As a given, not every patch is going to follow this invariant value, per patch. It's usually more like 6% here, 2% there, etc.; however, the end result is still the same.
+		These are "averaged" changes over the course of your optimization, similar to your overall speed during your commute to work on a typical day. As a given, not every patch is going to follow this invariant value, per patch. It's usually more like 6% here, 2% there, etc. Regardless, the end result is still the same.
 	</li>
 	<li>
 		When considering a reduction in some metric, the number of patches a team would need to commit increases significantly as the reduction gets large:
@@ -211,7 +208,7 @@ There are some important caveats to this modeling of the problem, namely:
 &nbsp;&nbsp;&nbsp;&nbsp;In all, despite the caveats there are advantages to this approach. This method can provide a practical framework for managing performance plans more effectively. It helps set clear, achievable goals or boundaries that teams can use to navigate optimizating a codebase. Additionally, this approach supports developers focused on performance, offering them a structured way to justify enhancements or provide concrete guardrails on development trajectories.
 </p>
 <p>
-&nbsp;&nbsp;&nbsp;&nbsp;Furthermore, circling back to the start, That remaining 90%
+&nbsp;&nbsp;&nbsp;&nbsp;Circling back to the start, don't hyperfixate on a single function or loop when optimizing your program's hot path. Avoid immediately writing off a change whose improvement may be small as it can yield big gains overtime. Further, don't rebut suggestions to improve regressions as "premature optimization" because you might have the team pay for it later.
 </p>
 </div>
 </body>
