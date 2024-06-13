@@ -176,7 +176,7 @@ h2
 	max-width: 60rem;
 	
 	text-align: center;
-	line-height: var(--hdrTwoSize);
+	line-height: calc(var(--hdrTwoSize)*1.5);
 }
 h3 
 {
@@ -191,7 +191,7 @@ h3
 	max-width: 60rem;
 	
 	text-align: center;
-	line-height: var(--hdrThreeSize);
+	line-height: calc(var(--hdrThreeSize)*1.5);
 }
 h4
 {
