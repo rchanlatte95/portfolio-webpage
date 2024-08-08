@@ -2,35 +2,35 @@
 {
 	--background: #1e1e1e;
 	--lightBackground: #202020;
-	
+
 	--navbarBackground: #34314c;
 	--navbarForeground: #bb86fc;
 	--navbarHoverColor: #b0aec8;
-	
+
 	--linkActive: #98c379;
-	
+
 	--aspect: calc(16 / 9);
 	--invAspect: calc(1 / (var(--aspect)));
-	
+
 	--textColor: #FFFFF0;
 	--baseFontSize: 1.256rem;
 	--baseTxtWidth: 50rem;
 	--twiceFontSize: calc(var(--baseFontSize) * 2.0);
-	
+
 	--hdrOneSize: calc(var(--baseFontSize) * 2.5);
 	--hdrTwoSize: calc(var(--baseFontSize) * 2.0);
 	--hdrThreeSize: calc(var(--baseFontSize) * 1.5);
 	--hdrFourSize: calc(var(--baseFontSize) * 1.15);
 	--hdrFiveSize: 1rem;
-	
+
 	--fontShadowSize: calc(var(--baseFontSize) * 0.1);
 	--footerSize: calc(var(--baseFontSize) * 4);
-	
+
 	--fontFam: monospace, monospace, system-ui;
 	--fontFamSS:  monospace, monospace, system-ui, sans-serif;
 }
 
-html 
+html
 {
    margin: 0px;
    height: 100%;
@@ -40,12 +40,12 @@ html
 body
 {
 	position: relative;
-	
+
 	max-width: 99.9%;
 	max-height: 99.9%;
-	
+
 	min-width: 55.6875%;
-	
+
 	margin: 0 auto;
 	padding-bottom: var(--footerSize);
 	background: var(--background);
@@ -64,7 +64,7 @@ footer
 {
 	position: relative;
 	left: 0; bottom: 0;
-	
+
 	/*
 	Footer, for some reason, expands beyond bounds of device? If I do this it'll
 	fix it.
@@ -79,20 +79,20 @@ footer
 
 .footerDiv
 {
-	text-align: center; 
+	text-align: center;
 	align-content: center;
 }
 
 a:link, a:visited 	{ color: var(--textColor); }
 a:hover, a:active 	{ color: var(--linkActive); }
 
-p 
+p
 {
 	margin-left: auto;
 	margin-right: auto;
 	align-content: center;
 	text-align: left;
-	
+
 	padding: 0 var(--baseFontSize);
 	color: var(--textColor);
 	font-family: var(--fontFamSS);
@@ -101,7 +101,7 @@ p
 	font-weight: normal;
 	text-shadow: 0 0 var(--fontShadowSize) black;
 	line-height: var(--twiceFontSize);
-	
+
 	/*
 	NOTE(RYAN_2024-04-30): 	I wanted 80 characters per line but it was going over
 							90 characters per line, which was incorrect. I am not
@@ -116,7 +116,7 @@ p
 	margin-right: auto;
 	align-content: center;
 	text-align: center;
-	
+
 	padding: 0 var(--baseFontSize);
 	color: var(--textColor);
 	font-family: var(--fontFamSS);
@@ -125,7 +125,7 @@ p
 	font-weight: lighter;
 	text-shadow: 0 0 var(--fontShadowSize) black;
 	line-height: var(--twiceFontSize);
-	
+
 	/*
 	NOTE(RYAN_2024-04-30): 	I wanted 80 characters per line but it was going over
 							90 characters per line, which was incorrect. I am not
@@ -134,7 +134,7 @@ p
 	*/
 	max-width: var(--baseTxtWidth);
 }
-.center 
+.center
 {
 	display: block;
 	margin-left: auto;
@@ -148,48 +148,48 @@ p
 	margin: 3rem auto;
 }
 
-h1 
+h1
 {
 	color: var(--textColor);
 	font-family: var(--fontFamSS);
 	font-size: var(--hdrOneSize);
 	text-shadow: 0 0 calc(var(--fontShadowSize) * 2) black;
-	
+
 	margin-left: auto;
 	margin-right: auto;
 	align-content: center;
 	max-width: 60rem;
 
-	text-align: center;	
+	text-align: center;
 	line-height: var(--hdrOneSize);
 }
-h2 
+h2
 {
 	color: var(--textColor);
 	font-family: var(--fontFamSS);
 	font-size: var(--hdrTwoSize);
 	text-shadow: 0 0 calc(var(--fontShadowSize) * 1.5) black;
-	
+
 	margin-left: auto;
 	margin-right: auto;
 	align-content: center;
 	max-width: 60rem;
-	
+
 	text-align: center;
 	line-height: calc(var(--hdrTwoSize)*1.5);
 }
-h3 
+h3
 {
 	color: var(--textColor);
 	font-family: var(--fontFamSS);
 	font-size: var(--hdrThreeSize);
 	text-shadow: 0 0 calc(var(--fontShadowSize) * 1.25) black;
-		
+
 	margin-left: auto;
 	margin-right: auto;
 	align-content: center;
 	max-width: 60rem;
-	
+
 	text-align: center;
 	line-height: calc(var(--hdrThreeSize)*1.5);
 }
@@ -199,12 +199,12 @@ h4
 	font-family: var(--fontFamSS);
 	font-size: var(--hdrFourSize);
 	text-shadow: 0 0 calc(var(--fontShadowSize) * 1.05) black;
-		
+
 	margin-left: auto;
 	margin-right: auto;
 	align-content: center;
 	max-width: 60rem;
-	
+
 	text-align: center;
 	line-height: var(--hdrFourSize);
 }
@@ -214,12 +214,12 @@ h5
 	font-family: var(--fontFamSS);
 	font-size: var(--hdrFiveSize);
 	text-shadow: 0 0 calc(var(--fontShadowSize) * 1.05) black;
-		
+
 	margin-left: auto;
 	margin-right: auto;
 	align-content: center;
 	max-width: 80rem;
-	
+
 	text-align: center;
 	line-height: var(--hdrFiveSize);
 }
@@ -247,17 +247,17 @@ th
 	box-sizing: border-box;
 	cursor: pointer;
 	display: inline-block;
-	
+
 	color: var(--textColor);
 	padding: var(--baseFontSize);
 	font-family: var(--fontFamSS);
 	font-size: var(--baseFontSize);
 	margin: calc(var(--baseFontSize) * 0.5);
-	
+
 	margin-top: 0;
 	font-weight: bold;
 	line-height: normal;
-	
+
 	min-height: 60px;
 	min-width: var(--baseFontSize);
 	outline: none;
@@ -271,19 +271,19 @@ th
 	will-change: transform;
 }
 .socialButton:disabled { pointer-events: none; }
-.socialButton:hover 
-{ 
-	box-shadow: rgba(0, 0, 0, 0.25) 0 8px 16px; 
-	transform: translateY(calc(var(--baseFontSize) * -0.25)); 
+.socialButton:hover
+{
+	box-shadow: rgba(0, 0, 0, 0.25) 0 8px 16px;
+	transform: translateY(calc(var(--baseFontSize) * -0.25));
 	text-shadow: 0 0 var(--fontShadowSize) black;
 }
-.socialButton:active 
-{ 
-	box-shadow: none; 
+.socialButton:active
+{
+	box-shadow: none;
 	transform: translateY(0);
 }
 
-hr 
+hr
 {
 	border: none;
 	border-top: 0.25em double var(--textColor);
@@ -292,7 +292,7 @@ hr
 	text-align: center;
 	height: var(--baseFontSize);
 }
-hr::after 
+hr::after
 {
   background: var(--background);
   content: '§';
@@ -311,7 +311,7 @@ hr::after
 	height: var(--baseFontSize);
 	width: 120ch;
 }
-.articleBar:after 
+.articleBar:after
 {
   background: var(--background);
   content: '§';
@@ -321,7 +321,7 @@ hr::after
 }
 
 .articleImgDiv
-{ 
+{
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -330,10 +330,10 @@ hr::after
 .articleImgBorder img
 {
 	max-width: 64ch;
-	max-height: 100%; 
-	display: block; 
-	margin: auto; 
-	
+	max-height: 100%;
+	display: block;
+	margin: auto;
+
 	border-style: outset;
 	border-top-color: var(--lightBackground);
 	border-left-color: #34314c;
@@ -342,14 +342,14 @@ hr::after
 }
 
 .container
-{ 
+{
 	float:left;
-	width:97%; 
+	width:97%;
 	margin: var(--baseFontSize);
 	align-content: center;
 	text-align: center;
 	vertical-align: text-top;
-	
+
 	/*
 	border-width:2px;
 	border-style:solid;
@@ -358,16 +358,16 @@ hr::after
 }
 
 .botBorderContainer
-{ 
+{
 	float:left;
-	width:97%; 
+	width:97%;
 	margin: var(--baseFontSize);
 	align-content: center;
 	text-align: center;
 	vertical-align: text-top;
-	padding-bottom: 1rem; 
+	padding-bottom: 1rem;
 	border-bottom: 4px double var(--textColor);
-	
+
 	/*
 	border-width:2px;
 	border-style:solid;
@@ -375,7 +375,7 @@ hr::after
 	*/
 }
 
-#image 
+#image
 {
 	display: inline-block;
 	width: 49%;
@@ -383,12 +383,12 @@ hr::after
 	text-align: center;
 	align-content: center;
 }
-#image img 
-{ 
+#image img
+{
 	max-width: 24rem;
 	width: auto;
 	min-width: 16rem;
-	
+
 	margin: var(--fontShadowSize);
 
 	border-style: outset;
@@ -397,7 +397,7 @@ hr::after
 	border-right-color: (--lightBackground);
 	border-bottom-color: #34314c;
 }
-#content 
+#content
 {
 	float: right;
 	width: 49%;
@@ -409,19 +409,19 @@ hr::after
 @media only screen and (max-width: 900px)
 {
 	#content, #image
-	{ 
+	{
 		width: 100%;
 		margin: auto;
 		text-align: center;
 		align-content: center;
 	}
-	
-	#image img 
-	{ 
+
+	#image img
+	{
 		max-width: 18rem;
 		width: auto;
 		min-width: 8rem;
-		
+
 		border-style: outset;
 		border-top-color: var(--lightBackground);
 		border-left-color: #34314c;
@@ -433,7 +433,7 @@ hr::after
 @media only screen and (max-width: 400px)
 {
 	#content, #image
-	{ 
+	{
 		width: 98%;
 		margin: auto;
 		text-align: center;
@@ -442,29 +442,29 @@ hr::after
 	.container
 	{
 		float:left;
-		width: 90%; 
+		width: 90%;
 		margin: var(--baseFontSize);
 		align-content: center;
 		text-align: center;
 		vertical-align: text-top;
 	}
-	
+
 	.math
 	{
 		font-size:75%;
 	}
-	
+
 	.articleImg
 	{
 		width: 75%;
 	}
-	
-	#image img 
-	{ 
+
+	#image img
+	{
 		max-width: 12rem;
 		width: auto;
 		min-width: 8rem;
-		
+
 		border-style: outset;
 		border-top-color: var(--lightBackground);
 		border-left-color: #34314c;
@@ -473,47 +473,47 @@ hr::after
 	}
 }
 
-.topnav 
+.topnav
 {
 	background-color: var(--navbarBackground);
 	overflow: hidden;
 }
 /* Style the links inside the navigation bar */
-.topnav a 
+.topnav a
 {
 	color: var(--textColor);
 	font-family: var(--fontFamSS);
 	padding: var(--baseFontSize);
 	font-size: var(--baseFontSize);
-	
+
 	float: left;
 	text-align: center;
 	text-decoration: none;
 }
 /* Change the color of links on hover */
-.topnav a:hover 
+.topnav a:hover
 {
 	background-color: var(--navbarHoverColor);
 	color: var(--background);
 }
 /* Add a color to the active/current link */
-.topnav a.active 
-{ 
-	background-color: var(--navbarForeground); 
+.topnav a.active
+{
+	background-color: var(--navbarForeground);
 	color: var(--background);
 	font-weight: bold;
 }
 
-li 
-{ 
+li
+{
 	margin: auto;
 	padding: 0 var(--baseFontSize);
 	color: var(--textColor);
 	font-family: var(--fontFamSS);
 	font-size: var(--baseFontSize);
 	text-shadow: 0 0 var(--fontShadowSize) black;
-	line-height: calc(var(--baseFontSize) * 1.5);	
-	
+	line-height: calc(var(--baseFontSize) * 1.5);
+
 	list-style-type: square;
 	list-style-position: outside;
 	text-align: left;
@@ -531,13 +531,13 @@ li::marker { color: var(--textColor); }
 	font-size: var(--baseFontSize);
 	text-shadow: 0 0 var(--fontShadowSize) black;
 	margin: var(--baseFontSize) 0;
-	
+
 	list-style-type: none;
 	list-style-position: inside;
 	text-align: center;
 }
 
-.olCenter 
+.olCenter
 {
 	text-align: center;
 	list-style-position: inside;
@@ -547,16 +547,16 @@ li::marker { color: var(--textColor); }
 {
 	/* Adds spacing between line items. */
 	margin-bottom: var(--baseFontSize);
-	
+
 	color: var(--textColor);
 	font-family: var(--fontFamSS);
 	font-size: var(--baseFontSize);
 	text-shadow: 0 0 var(--fontShadowSize) black;
-	
+
 	font-weight: normal;
 	text-align: left;
 	line-height: calc(var(--baseFontSize) * 1.5);
-	
+
 	list-style-type: decimal;
 	list-style-position: outside;
 	text-align: left ;
@@ -568,7 +568,7 @@ li::marker { color: var(--textColor); }
 .centerOL li li li li li { font-size: 96%; }
 .centerOL li::marker { color: var(--textColor); }
 
-.ulCenter 
+.ulCenter
 {
 	text-align: center;
 	list-style-position: inside;
@@ -578,12 +578,12 @@ li::marker { color: var(--textColor); }
 {
 	/* Adds spacing between line items. */
 	margin-bottom: var(--baseFontSize);
-	
+
 	color: var(--textColor);
 	font-family: var(--fontFamSS);
 	font-size: var(--baseFontSize);
 	text-shadow: 0 0 var(--fontShadowSize) black;
-	
+
 	font-weight: normal;
 	text-align: left;
 	line-height: calc(var(--baseFontSize) * 1.5);
