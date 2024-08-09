@@ -41,17 +41,20 @@
 					(C++/SDL/OpenGL)
 				</h3>
 				<p>
+				OpenGL renderer meant for my own edification.
+				</p>
+				<p>
 					Current Features:
 					<ul>
 						<li>Custom Math library</li>
+						<li>Can compile and execute inline GLSL shader code</li>
 					</ul>
 				</p>
 				<p>
 					Planned Features:
 					<ul>
 						<li>Custom render image export</li>
-						<li>PBR rendering</li>
-						<li>Imgui integration</li>
+						<li>BRDF reflectance</li>
 						<li>Realtime shadows and shadow maps</li>
 						<li>External Shader files and editing</li>
 						<li>Support for OBJ/FBX/OpenUSD/glTF files</li>
@@ -60,12 +63,12 @@
 						<li>Anti-aliasing</li>
 						<li>SDF font rendering</li>
 					</ul>
-				</p>
+					<br><br>
 					<a href="https://github.com/rchanlatte95/rend">Code here</a>
 				</p>
 			</div>
 			<div id="image" class="">
-				<img src="imgs/helloworld-tri.jpg" alt="screenshot the output of my path tracer. a number of different colored spheres with varying levels of reflectance in a white scene.">
+				<img src="imgs/helloworld-tri.jpg" alt="screenshot of the hello world triangle">
 			</div>
 		</div>
 	</div>
@@ -74,26 +77,35 @@
 		<div class="row">
 			<div id="content" class="">
 				<h3>
-					Kar-Lang
+					SIMD Accelerated Software PathTracer
 					<br>
-					(C++ and LLVM)
+					(C++ and SDL)
 				</h3>
+				<p>
+					Wanted to take a break from OpenGL rasterizers and learn pathtracing.
+				</p>
 				<p>
 					Current Features:
 					<ul>
-						
+						<li>Handwritten math types and algorithms</li>
+						<li>Handwritten graphics algorithms</li>
 					</ul>
 				</p>
 				<p>
 					Planned Features:
 					<ul>
+						<li>Blue noise ray sampling</li>
+						<li>Modified BRDF reflectance</li>
+						<li>Realtime shadows and shadow maps</li>
+						<li>SIMD accerated ray computation</li>
+						<li>Multi-threaded render image construction</li>
 					</ul>
-				</p>
-					<a href="https://github.com/rchanlatte95/kar-lang">Code here</a>
+					<br><br>
+					<a href="https://github.com/rchanlatte95/pt">Code here</a>
 				</p>
 			</div>
 			<div id="image" class="">
-				<img src="imgs/llvm-ex.jpg" alt="screenshot the output of my path tracer. a number of different colored spheres with varying levels of reflectance in a white scene.">
+				<img src="imgs/pathtrace.jpg" alt="screenshot the output of a path tracer. a number of different colored spheres with varying levels of reflectance in a white scene.">
 			</div>
 		</div>
 	</div>
@@ -109,31 +121,6 @@
 	<p style="text-align: center">
 	Here is a list of past projects I've worked on over the years. There will be a link to the Git repo if I am allowed to share the code. Hope you enjoy.
 	</p>
-	</div>
-
-	<div class="botBorderContainer">
-		<div class="row">
-			<div id="content" class="">
-				<h3>
-					SIMD Accelerated Software PathTracer
-					<br>
-					(C++ and SDL)
-				</h3>
-				<p>
-					Wanted to take a break from OpenGL rasterizers and learn pathtracing.
-					<ul>
-						<li>Custom SIMD accelerated math library.</li>
-						<li>Custom render image export.</li>
-						<li>Custom reflectance model more closely match physics.</li>
-					</ul>
-					<br><br>
-					<a href="https://github.com/rchanlatte95/pt">Code here</a>
-				</p>
-			</div>
-			<div id="image" class="">
-				<img src="imgs/pathtrace.jpg" alt="screenshot the output of my path tracer. a number of different colored spheres with varying levels of reflectance in a white scene.">
-			</div>
-		</div>
 	</div>
 
 	<div class="botBorderContainer">
