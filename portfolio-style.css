@@ -247,7 +247,7 @@ th
 	box-sizing: border-box;
 	cursor: pointer;
 	display: inline-block;
-
+	
 	color: var(--textColor);
 	padding: var(--baseFontSize);
 	font-family: var(--fontFamSS);
@@ -261,7 +261,7 @@ th
 	min-height: 60px;
 	min-width: var(--baseFontSize);
 	outline: none;
-	text-align: center;
+
 	text-decoration: none;
 	transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
 	user-select: none;
@@ -269,6 +269,9 @@ th
 	touch-action: manipulation;
 	width: auto;
 	will-change: transform;
+	
+	text-align: center;
+	vertical-align: middle;
 }
 .socialButton:disabled { pointer-events: none; }
 .socialButton:hover
