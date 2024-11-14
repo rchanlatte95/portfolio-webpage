@@ -28,10 +28,10 @@
 <div class="centerContainer">
 
 <h1>
-	&#xb1;50% Performance in 14 patches or less
+	Game Design Nit #0
 </h1>
 <h4>
-	Don't underestimate small gains/losses
+	Health bars or whatever
 </h4>
 <div class="articleImgDiv"> 
 	<div class="articleImgBorder">
@@ -49,167 +49,14 @@
 </div>
 <div class="botBorderContainer">
 	<div style="float: left; align-content: left; width: 49%; margin-left: auto; margin-right: auto;"> 
-		Published: 2024-05-27
+		Published: 2024-11-20
 	</div>
 	<div style="float: right;	align-content: right; width: 49%; margin-left: auto; margin-right: auto;"> 
-		Last updated: 2024-06-06 
+		Last updated: 2024-11-20 
 	</div>
 </div>
 </h5>
 
-<p>
-&nbsp;&nbsp;&nbsp;&nbsp;It's said that a program tends to spend 90% of its time in 10% of its codebase. Even amongst that 10%, developers will hyperfixate on a small fraction, usually one or two functions/loops. This is worthwhile and useful, but you shouldn't leave smaller gains elsewhere. Those small gains can snowball into bigger ones given enough of them; however, while intuitively true, how do we reason about that? How many regressions does it take until we reach our breaking point? How much performance do we need to gain, per patch, to reach an agreed upon target?
-</p>
-<p>
-&nbsp;&nbsp;&nbsp;&nbsp;By reframing the problem we can tackle some of those questions. Framed in terms of a, slightly modified, <a href="https://www.math.uni.edu/~campbell/mdm/comp.html">annual compound interest formula</a> we get this:
-
-<div class="math">
-
-\begin{align} \Large \textcolor{white}
-{
-	\displaylines
-	{ 
-		&A&=&P(1+r)^{t} \\
-		\Rightarrow &\Delta_{\;change\,in\,baseline}&=&(1 + d\,\%_{\,per\:patch})^{p_{\,patch\:count}}
-	}
-}  
-\end{align}
-
-</div>
-</p>
-
-<p>
-&nbsp;&nbsp;&nbsp;&nbsp;Let's make sense of this. Our principal is the baseline of whatever metric we wish to optimize. Let's say, execution time, memory usage, etc. For simplicity's sake, let's make it one so we can ignore it for now. \(\Delta\) is the resultant change to our baseline, \(p\) is the number of patches, and \( d\,\% \) is the target percentage change per patch (as measured by your benchmarking suite of choice).
-</p>
-
-<p>
-&nbsp;&nbsp;&nbsp;&nbsp;With some trivial algebra we can rearrange our above equation and answer the questions posed earlier:
-<div class="math">
-
-\begin{align} \Large \textcolor{white}
-{
-	\displaylines
-	{ 
-		&p&=&\frac{ln(\Delta)}{ln(1+d\,\%)} \\
-		&d\,\%&=&\Delta^{^{\frac{1}{p}}}+1
-	}
-}  
-\end{align}
-</div>
-</p>
-
-<div class="articleImgDiv"> 
-	<div class="articleImgBorder">
-		<img class="articleImg" src="imgs/perf-interest-graph.png" alt="graph displaying the slightly modified annual compound interest formula" style="max-width: 1080; max-height: 1080; width: 1080; height: 1080; min-width: 300; min-height: 300;">
-	</div>
-	
-	<p class="articleImgCaption">
-	Note the scale difference between the X-axis and Y-axis.
-	</p>
-</div>
-
-<p>
-Using this, developers can answer a couple of useful questions:
-</p>
-
-<ol class="centerOL">
-   <li>
-		How many patches would it take to improve performance by x%?
-		<ol>
-			<li>
-				Assuming a reduction of 5% per patch (a delta percentage of -0.05), it'd take approximately 14 patches to achieve an aggregate ~50% reduction in whatever metric you are trying to optimize.
-			</li>
-		</ol>
-	</li>
-   <li>
-		How much performance would we need to gain, per patch, before we've reached our goal?
-		<ol>
-			<li>
-				Suppose we have five patches before we ship and we want to reduce runtime by 10%. We'd need to reduce runtime by 2.5% (-0.025), per patch, to accomplish this.
-			</li>
-		</ol>
-	</li>
-	   <li>
-		How many performance regressions can we handle before we reach our tipping point?
-		<ol>
-			<li>
-				If we're able to tolerate a 50% increase in memory before shipping; and, four patches before we shipped we would need to ensure each patch didn't exceed a 10% memory increase to ensure our goal was met.
-			</li>
-		</ol>
-	</li>
-</ol>
-
-<p>
-There are some important caveats to this modeling of the problem, namely:
-</p>
-
-<ul class="ulCenter">
-	<li>
-		These are theoretical predictions to a change in your chosen metric. Obviously there is a range for the realized change in whatever quantity you've selected. That said, I anticipate these results to track quite close to the observed result. 
-	</li>
-	<li>
-		These are "averaged" changes over the course of your optimization, similar to your overall speed during your commute to work on a typical day. As a given, not every patch is going to follow this invariant value, per patch. It's usually more like 6% here, 2% there, etc. Regardless, the end result is still the same.
-	</li>
-	<li>
-		When considering a reduction in some metric, the number of patches a team would need to commit increases significantly as the reduction gets large:
-		<table>
-			<tr>
-				<th>\(p\)</br>Patch Count</th>
-				<th>\(d\)</br>+0.05%</br>per patch</th>
-				<th>\(d\)</br>-0.05%</br>per patch</th>
-			</tr>
-			<tr>
-				<td>0</td>
-				<td>1.0</td>
-				<td>1.0</td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>1.050</td>
-				<td>0.950</td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td>1.102</td>
-				<td>0.902</td>
-			</tr>
-			<tr>
-				<td>3</td>
-				<td>1.157</td>
-				<td>0.857</td>
-			</tr>
-			<tr>
-				<td>5</td>
-				<td>1.276</td>
-				<td>0.773</td>
-			</tr>
-			<tr>
-				<td>14</td>
-				<td>1.979</td>
-				<td>0.487</td>
-			</tr>
-			<tr>
-				<td>50</td>
-				<td>11.467</td>
-				<td>0.076</td>
-			</tr>
-			<tr>
-				<td>100</td>
-				<td>131.501</td>
-				<td>0.005</td>
-			</tr>
-		</table>
-		
-		In essence, if we choose runtime as a metric, there is no number of patches that will lead to instaneous execution. On the otherhand, a ton of poor patches do have a depreciative effect, and it doesn't take that many before it can get concerning. Both of these outcomes match intuition.
-	</li>
-</ul>
-
-<p>
-&nbsp;&nbsp;&nbsp;&nbsp;In all, despite the caveats there are advantages to this approach. This method can provide a practical framework for managing performance plans more effectively. It helps set clear, achievable goals or boundaries that teams can use to navigate optimizating a codebase. Additionally, this approach supports developers focused on performance, offering them a structured way to justify enhancements or provide concrete guardrails on development trajectories.
-</p>
-<p>
-&nbsp;&nbsp;&nbsp;&nbsp;Circling back to the start, don't hyperfixate on a single function or loop when optimizing your program's hot path. Avoid immediately writing off a change whose improvement may be small as it can yield big gains overtime. Further, don't rebut suggestions to improve regressions as "premature optimization" because you might have the team pay for it later.
-</p>
 </div>
 </body>
 
