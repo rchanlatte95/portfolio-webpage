@@ -517,8 +517,8 @@ li
 	text-shadow: 0 0 var(--fontShadowSize) black;
 	line-height: calc(var(--baseFontSize) * 1.5);
 
-	list-style-type: square;
-	list-style-position: outside;
+	list-style-type: none;
+	list-style-position: outisde;
 	text-align: left;
 }
 li li { font-size: 96%; }
@@ -535,9 +535,9 @@ li::marker { color: var(--textColor); }
 	text-shadow: 0 0 var(--fontShadowSize) black;
 	margin: var(--baseFontSize) 0;
 
-	list-style-type: none;
-	list-style-position: inside;
-	text-align: center;
+	list-style-type: number;
+	list-style-position: outisde;
+	text-align: left;
 }
 
 .olCenter
