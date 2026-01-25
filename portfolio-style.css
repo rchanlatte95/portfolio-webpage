@@ -13,6 +13,7 @@
 	--invAspect: calc(1 / (var(--aspect)));
 
 	--textColor: #FFFFF0;
+	--textMuted: #a0a0a0;
 	--baseFontSize: 1.256rem;
 	--baseTxtWidth: 50rem;
 	--twiceFontSize: calc(var(--baseFontSize) * 2.0);
@@ -28,13 +29,24 @@
 
 	--fontFam: monospace, monospace, system-ui;
 	--fontFamSS:  monospace, monospace, system-ui, sans-serif;
+
+	/* New animation variables */
+	--transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+	--transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	--glow-purple: 0 0 20px rgba(187, 134, 252, 0.3);
+	--glow-green: 0 0 20px rgba(152, 195, 121, 0.3);
 }
+
+/* ==========================================================================
+   Base & Reset Enhancements
+   ========================================================================== */
 
 html
 {
-   margin: 0px;
-   height: 100%;
-   width: 100%;
+	margin: 0px;
+	height: 100%;
+	width: 100%;
+	scroll-behavior: smooth;
 }
 
 body
@@ -49,42 +61,309 @@ body
 	margin: 0 auto;
 	padding-bottom: var(--footerSize);
 	background: var(--background);
-	/*border: 5px solid red;*/
+	
+	/* Subtle animated scanline effect */
+	background-image: 
+		repeating-linear-gradient(
+			0deg,
+			transparent,
+			transparent 2px,
+			rgba(0, 0, 0, 0.03) 2px,
+			rgba(0, 0, 0, 0.03) 4px
+		);
 }
+
+/* Subtle grid overlay */
+body::before {
+	content: '';
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: 
+		linear-gradient(rgba(187, 134, 252, 0.02) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(187, 134, 252, 0.02) 1px, transparent 1px);
+	background-size: 50px 50px;
+	pointer-events: none;
+	z-index: -1;
+	animation: gridFade 10s ease-in-out infinite;
+}
+
+@keyframes gridFade {
+	0%, 100% { opacity: 0.5; }
+	50% { opacity: 1; }
+}
+
+/* ==========================================================================
+   Navigation - Enhanced with animations
+   ========================================================================== */
+
+.topnav
+{
+	background-color: var(--navbarBackground);
+	overflow: hidden;
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	border-bottom: 2px solid rgba(187, 134, 252, 0.3);
+	animation: navSlideDown 0.5s ease-out;
+}
+
+@keyframes navSlideDown {
+	from {
+		opacity: 0;
+		transform: translateY(-100%);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.topnav a
+{
+	color: var(--textColor);
+	font-family: var(--fontFamSS);
+	padding: var(--baseFontSize);
+	font-size: var(--baseFontSize);
+
+	float: left;
+	text-align: center;
+	text-decoration: none;
+	transition: var(--transition-fast);
+	position: relative;
+}
+
+/* Animated underline effect */
+.topnav a::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 2px;
+	background: var(--linkActive);
+	transition: var(--transition-fast);
+	transform: translateX(-50%);
+}
+
+.topnav a:hover::after {
+	width: 80%;
+}
+
+.topnav a:hover
+{
+	background-color: var(--navbarHoverColor);
+	color: var(--background);
+}
+
+.topnav a.active
+{
+	background-color: var(--navbarForeground);
+	color: var(--background);
+	font-weight: bold;
+}
+
+.topnav a.active::after {
+	width: 100%;
+	background: var(--background);
+	height: 3px;
+}
+
+/* ==========================================================================
+   Container Animations
+   ========================================================================== */
 
 .centerContainer
 {
 	margin: 1rem auto;
 	max-width: 96rem;
 	padding-bottom: 2rem;
-	/*border: 5px solid red;*/
 }
 
-footer
+/* ==========================================================================
+   Section Cards - Enhanced with hover effects
+   ========================================================================== */
+
+.botBorderContainer
 {
+	float:left;
+	width:97%;
+	margin: var(--baseFontSize);
+	align-content: center;
+	text-align: center;
+	vertical-align: text-top;
+	padding-bottom: 1rem;
+	border-bottom: 4px double var(--textColor);
+
+	/* Animation on scroll-in */
+	animation: fadeSlideUp 0.6s ease-out both;
+}
+
+/* Staggered animation delays */
+.botBorderContainer:nth-child(1) { animation-delay: 0.1s; }
+.botBorderContainer:nth-child(2) { animation-delay: 0.15s; }
+.botBorderContainer:nth-child(3) { animation-delay: 0.2s; }
+.botBorderContainer:nth-child(4) { animation-delay: 0.25s; }
+.botBorderContainer:nth-child(5) { animation-delay: 0.3s; }
+.botBorderContainer:nth-child(6) { animation-delay: 0.35s; }
+.botBorderContainer:nth-child(7) { animation-delay: 0.4s; }
+
+@keyframes fadeSlideUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* ==========================================================================
+   Row/Card styling with hover effects
+   ========================================================================== */
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	background: var(--lightBackground);
+	border: 1px solid rgba(187, 134, 252, 0.15);
+	border-radius: 4px;
+	padding: 1.5rem;
+	margin: 1rem 0;
+	transition: var(--transition-smooth);
 	position: relative;
-	left: 0; bottom: 0;
-
-	/*
-	Footer, for some reason, expands beyond bounds of device? If I do this it'll
-	fix it.
-	*/
-	width: 99%;
-	height: 99%;
-	margin-left: 0.25%;
-
-	text-align: center;
-	align-content: center;
+	overflow: hidden;
 }
 
-.footerDiv
+/* Glowing border effect on hover */
+.row::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 2px;
+	background: linear-gradient(90deg, var(--navbarForeground), var(--linkActive));
+	transform: scaleX(0);
+	transition: var(--transition-smooth);
+}
+
+.row:hover {
+	border-color: rgba(187, 134, 252, 0.4);
+	box-shadow: var(--glow-purple);
+	transform: translateY(-2px);
+}
+
+.row:hover::before {
+	transform: scaleX(1);
+}
+
+/* ==========================================================================
+   Typography Enhancements
+   ========================================================================== */
+
+h1
 {
-	text-align: center;
+	color: var(--textColor);
+	font-family: var(--fontFamSS);
+	font-size: var(--hdrOneSize);
+	text-shadow: 0 0 calc(var(--fontShadowSize) * 2) black;
+
+	margin-left: auto;
+	margin-right: auto;
 	align-content: center;
+	max-width: 60rem;
+
+	text-align: center;
+	line-height: var(--hdrOneSize);
 }
 
-a:link, a:visited 	{ color: var(--textColor); }
-a:hover, a:active 	{ color: var(--linkActive); }
+h2
+{
+	color: var(--textColor);
+	font-family: var(--fontFamSS);
+	font-size: var(--hdrTwoSize);
+	text-shadow: 0 0 calc(var(--fontShadowSize) * 1.5) black;
+
+	margin-left: auto;
+	margin-right: auto;
+	align-content: center;
+	max-width: 60rem;
+
+	text-align: center;
+	line-height: calc(var(--hdrTwoSize)*1.5);
+	
+	/* Terminal-style prefix */
+	position: relative;
+}
+
+h2::before {
+	content: '> ';
+	color: var(--navbarForeground);
+	opacity: 0.8;
+}
+
+h3
+{
+	color: var(--textColor);
+	font-family: var(--fontFamSS);
+	font-size: var(--hdrThreeSize);
+	text-shadow: 0 0 calc(var(--fontShadowSize) * 1.25) black;
+
+	margin-left: auto;
+	margin-right: auto;
+	align-content: center;
+	max-width: 60rem;
+
+	text-align: center;
+	line-height: calc(var(--hdrThreeSize)*1.5);
+	transition: var(--transition-fast);
+}
+
+.row:hover h3 {
+	color: var(--navbarForeground);
+	text-shadow: var(--glow-purple);
+}
+
+h4
+{
+	color: var(--textColor);
+	font-family: var(--fontFamSS);
+	font-size: var(--hdrFourSize);
+	text-shadow: 0 0 calc(var(--fontShadowSize) * 1.05) black;
+
+	margin-left: auto;
+	margin-right: auto;
+	align-content: center;
+	max-width: 60rem;
+
+	text-align: center;
+	line-height: var(--hdrFourSize);
+}
+
+h5
+{
+	color: var(--textColor);
+	font-family: var(--fontFamSS);
+	font-size: var(--hdrFiveSize);
+	text-shadow: 0 0 calc(var(--fontShadowSize) * 1.05) black;
+
+	margin-left: auto;
+	margin-right: auto;
+	align-content: center;
+	max-width: 80rem;
+
+	text-align: center;
+	line-height: var(--hdrFiveSize);
+}
+
+/* ==========================================================================
+   Paragraphs & Text
+   ========================================================================== */
 
 p
 {
@@ -102,14 +381,9 @@ p
 	text-shadow: 0 0 var(--fontShadowSize) black;
 	line-height: var(--twiceFontSize);
 
-	/*
-	NOTE(RYAN_2024-04-30): 	I wanted 80 characters per line but it was going over
-							90 characters per line, which was incorrect. I am not
-							sure why that is, but I just reduced the max-width
-							until the largest line was <= 80 characters.
-	*/
 	max-width: var(--baseTxtWidth);
 }
+
 .articleImgCaption
 {
 	margin-left: auto;
@@ -126,14 +400,54 @@ p
 	text-shadow: 0 0 var(--fontShadowSize) black;
 	line-height: var(--twiceFontSize);
 
-	/*
-	NOTE(RYAN_2024-04-30): 	I wanted 80 characters per line but it was going over
-							90 characters per line, which was incorrect. I am not
-							sure why that is, but I just reduced the max-width
-							until the largest line was <= 80 characters.
-	*/
 	max-width: var(--baseTxtWidth);
 }
+
+/* ==========================================================================
+   Links - Enhanced with animations
+   ========================================================================== */
+
+a:link, a:visited { 
+	color: var(--textColor); 
+	transition: var(--transition-fast);
+}
+
+a:hover, a:active { 
+	color: var(--linkActive);
+	text-shadow: var(--glow-green);
+}
+
+/* Styled links in content - subtle underline style */
+#content a {
+	color: var(--linkActive);
+	text-decoration: none;
+	position: relative;
+	transition: var(--transition-fast);
+}
+
+#content a::after {
+	content: '';
+	position: absolute;
+	bottom: -2px;
+	left: 0;
+	width: 0;
+	height: 1px;
+	background: var(--linkActive);
+	transition: width 0.2s ease;
+}
+
+#content a:hover {
+	text-shadow: 0 0 10px rgba(152, 195, 121, 0.4);
+}
+
+#content a:hover::after {
+	width: 100%;
+}
+
+/* ==========================================================================
+   Images & Media - Enhanced
+   ========================================================================== */
+
 .center
 {
 	display: block;
@@ -148,81 +462,176 @@ p
 	margin: 3rem auto;
 }
 
-h1
+#image
+{
+	display: inline-block;
+	width: 49%;
+	margin: var(--baseFontSize) 0;
+	text-align: center;
+	align-content: center;
+}
+
+#image img, #image video
+{
+	max-width: 24rem;
+	width: auto;
+	min-width: 16rem;
+
+	margin: var(--fontShadowSize);
+
+	border-style: outset;
+	border-width: 3px;
+	border-top-color: var(--lightBackground);
+	border-left-color: #34314c;
+	border-right-color: var(--lightBackground);
+	border-bottom-color: #34314c;
+	
+	transition: var(--transition-smooth);
+}
+
+#image img:hover, #image video:hover {
+	transform: scale(1.03);
+	box-shadow: var(--glow-purple);
+	border-color: var(--navbarForeground);
+}
+
+#content
+{
+	float: right;
+	width: 49%;
+	margin-left: auto;
+	margin-right: auto;
+	align-content: right;
+}
+
+/* Video styling */
+video {
+	border-radius: 2px;
+}
+
+/* ==========================================================================
+   Lists - Enhanced styling
+   ========================================================================== */
+
+li
+{
+	margin: auto;
+	padding: 0 var(--baseFontSize);
+	color: var(--textColor);
+	font-family: var(--fontFamSS);
+	font-size: var(--baseFontSize);
+	text-shadow: 0 0 var(--fontShadowSize) black;
+	line-height: calc(var(--baseFontSize) * 1.5);
+
+	list-style-type: none;
+	list-style-position: outside;
+	text-align: left;
+	
+	position: relative;
+	padding-left: 1.5em;
+	transition: var(--transition-fast);
+}
+
+/* Custom bullet points */
+li::before {
+	content: '→';
+	position: absolute;
+	left: 0;
+	color: var(--navbarForeground);
+	transition: var(--transition-fast);
+}
+
+li:hover::before {
+	color: var(--linkActive);
+	transform: translateX(3px);
+}
+
+li li { font-size: 96%; }
+li li::before { content: '·'; color: var(--linkActive); }
+
+li li li { font-size: 96%; }
+li li li::before { content: '-'; }
+
+li li li li { font-size: 96%; }
+li li li li li { font-size: 96%; }
+li::marker { color: var(--textColor); }
+
+.articleList
 {
 	color: var(--textColor);
 	font-family: var(--fontFamSS);
-	font-size: var(--hdrOneSize);
-	text-shadow: 0 0 calc(var(--fontShadowSize) * 2) black;
+	font-size: var(--baseFontSize);
+	text-shadow: 0 0 var(--fontShadowSize) black;
+	margin: var(--baseFontSize) 0;
 
-	margin-left: auto;
-	margin-right: auto;
-	align-content: center;
-	max-width: 60rem;
-
-	text-align: center;
-	line-height: var(--hdrOneSize);
+	list-style-type: number;
+	list-style-position: outside;
+	text-align: left;
 }
-h2
+
+.olCenter
 {
+	text-align: center;
+	list-style-position: inside;
+}
+
+.centerOL li
+{
+	margin-bottom: var(--baseFontSize);
+
 	color: var(--textColor);
 	font-family: var(--fontFamSS);
-	font-size: var(--hdrTwoSize);
-	text-shadow: 0 0 calc(var(--fontShadowSize) * 1.5) black;
+	font-size: var(--baseFontSize);
+	text-shadow: 0 0 var(--fontShadowSize) black;
 
-	margin-left: auto;
-	margin-right: auto;
-	align-content: center;
-	max-width: 60rem;
+	font-weight: normal;
+	text-align: left;
+	line-height: calc(var(--baseFontSize) * 1.5);
 
-	text-align: center;
-	line-height: calc(var(--hdrTwoSize)*1.5);
+	list-style-type: decimal;
+	list-style-position: outside;
+	text-align: left ;
+	max-width:48ch;
 }
-h3
+.centerOL li li { font-size: 96%; list-style-type:lower-alpha; }
+.centerOL li li li { font-size: 96%;  list-style-type:lower-roman; }
+.centerOL li li li li { font-size: 96%; }
+.centerOL li li li li li { font-size: 96%; }
+.centerOL li::marker { color: var(--textColor); }
+
+.ulCenter
 {
+	text-align: center;
+	list-style-position: inside;
+}
+
+.ulCenter li
+{
+	margin-bottom: var(--baseFontSize);
+
 	color: var(--textColor);
 	font-family: var(--fontFamSS);
-	font-size: var(--hdrThreeSize);
-	text-shadow: 0 0 calc(var(--fontShadowSize) * 1.25) black;
+	font-size: var(--baseFontSize);
+	text-shadow: 0 0 var(--fontShadowSize) black;
 
-	margin-left: auto;
-	margin-right: auto;
-	align-content: center;
-	max-width: 60rem;
+	font-weight: normal;
+	text-align: left;
+	line-height: calc(var(--baseFontSize) * 1.5);
 
-	text-align: center;
-	line-height: calc(var(--hdrThreeSize)*1.5);
+	list-style-type: square;
+	list-style-position: outside;
+	text-align: left ;
+	max-width:48ch;
 }
-h4
-{
-	color: var(--textColor);
-	font-family: var(--fontFamSS);
-	font-size: var(--hdrFourSize);
-	text-shadow: 0 0 calc(var(--fontShadowSize) * 1.05) black;
+.ulCenter li li { font-size: 96%; list-style-type:disc; }
+.ulCenter li li li { font-size: 96%;  list-style-type:circle; }
+.ulCenter li li li li { font-size: 96%; }
+.ulCenter li li li li li { font-size: 96%; }
+.ulCenter li::marker { color: var(--textColor); }
 
-	margin-left: auto;
-	margin-right: auto;
-	align-content: center;
-	max-width: 60rem;
-
-	text-align: center;
-	line-height: var(--hdrFourSize);
-}
-h5
-{
-	color: var(--textColor);
-	font-family: var(--fontFamSS);
-	font-size: var(--hdrFiveSize);
-	text-shadow: 0 0 calc(var(--fontShadowSize) * 1.05) black;
-
-	margin-left: auto;
-	margin-right: auto;
-	align-content: center;
-	max-width: 80rem;
-
-	text-align: center;
-	line-height: var(--hdrFiveSize);
-}
+/* ==========================================================================
+   Tables
+   ========================================================================== */
 
 table, td {
 	border: 1px solid var(--textColor);
@@ -230,6 +639,7 @@ table, td {
 	text-align:center;
 	margin: 2rem 0;
 }
+
 th
 {
 	border: 1px solid var(--textColor);
@@ -237,6 +647,10 @@ th
 	text-align:center;
 	padding: 1rem 2rem;
 }
+
+/* ==========================================================================
+   Buttons - Enhanced with animations
+   ========================================================================== */
 
 .socialButton
 {
@@ -272,19 +686,63 @@ th
 	
 	text-align: center;
 	vertical-align: middle;
+	
+	position: relative;
+	overflow: hidden;
 }
+
+/* Shine effect on hover */
+.socialButton::after {
+	content: '';
+	position: absolute;
+	top: -50%;
+	left: -50%;
+	width: 200%;
+	height: 200%;
+	background: linear-gradient(
+		45deg,
+		transparent 40%,
+		rgba(255, 255, 255, 0.1) 50%,
+		transparent 60%
+	);
+	transform: translateX(-100%);
+	transition: transform 0.6s ease;
+}
+
+.socialButton:hover::after {
+	transform: translateX(100%);
+}
+
 .socialButton:disabled { pointer-events: none; }
+
 .socialButton:hover
 {
-	box-shadow: rgba(0, 0, 0, 0.25) 0 8px 16px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0 8px 16px, var(--glow-purple);
 	transform: translateY(calc(var(--baseFontSize) * -0.25));
 	text-shadow: 0 0 var(--fontShadowSize) black;
+	border-color: var(--navbarForeground);
 }
+
 .socialButton:active
 {
 	box-shadow: none;
 	transform: translateY(0);
 }
+
+.socialButton img {
+	width: 24px !important;
+	height: 24px !important;
+	object-fit: contain;
+	transition: var(--transition-fast);
+}
+
+.socialButton:hover img {
+	transform: scale(1.1);
+}
+
+/* ==========================================================================
+   Horizontal Rules & Dividers
+   ========================================================================== */
 
 hr
 {
@@ -295,13 +753,20 @@ hr
 	text-align: center;
 	height: var(--baseFontSize);
 }
+
 hr::after
 {
-  background: var(--background);
-  content: '§';
-  padding: 0 var(--fontShadowSize);
-  position: relative;
-  top: -13px;
+	background: var(--background);
+	content: '§';
+	padding: 0 var(--fontShadowSize);
+	position: relative;
+	top: -13px;
+	animation: symbolPulse 3s ease-in-out infinite;
+}
+
+@keyframes symbolPulse {
+	0%, 100% { opacity: 1; color: var(--textColor); }
+	50% { opacity: 0.7; color: var(--navbarForeground); }
 }
 
 .articleBar
@@ -314,20 +779,25 @@ hr::after
 	height: var(--baseFontSize);
 	width: 120ch;
 }
+
 .articleBar:after
 {
-  background: var(--background);
-  content: '§';
-  padding: 0 var(--fontShadowSize);
-  position: relative;
-  top: -13px;
+	background: var(--background);
+	content: '§';
+	padding: 0 var(--fontShadowSize);
+	position: relative;
+	top: -13px;
 }
+
+/* ==========================================================================
+   Article Images
+   ========================================================================== */
 
 .articleImgDiv
 {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
 }
 
 .articleImgBorder img
@@ -340,9 +810,19 @@ hr::after
 	border-style: outset;
 	border-top-color: var(--lightBackground);
 	border-left-color: #34314c;
-	border-right-color: (--lightBackground);
+	border-right-color: var(--lightBackground);
 	border-bottom-color: #34314c;
+	
+	transition: var(--transition-smooth);
 }
+
+.articleImgBorder img:hover {
+	box-shadow: var(--glow-purple);
+}
+
+/* ==========================================================================
+   Container Variants
+   ========================================================================== */
 
 .container
 {
@@ -352,62 +832,79 @@ hr::after
 	align-content: center;
 	text-align: center;
 	vertical-align: text-top;
-
-	/*
-	border-width:2px;
-	border-style:solid;
-	border-color:blue;
-	*/
 }
 
-.botBorderContainer
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+footer
 {
-	float:left;
-	width:97%;
-	margin: var(--baseFontSize);
-	align-content: center;
+	position: relative;
+	left: 0; bottom: 0;
+
+	width: 99%;
+	height: 99%;
+	margin-left: 0.25%;
+
 	text-align: center;
-	vertical-align: text-top;
-	padding-bottom: 1rem;
-	border-bottom: 4px double var(--textColor);
-
-	/*
-	border-width:2px;
-	border-style:solid;
-	border-color:blue;
-	*/
+	align-content: center;
+	
+	border-top: 2px solid rgba(187, 134, 252, 0.2);
+	padding-top: 2rem;
+	margin-top: 2rem;
 }
 
-#image
+.footerDiv
 {
-	display: inline-block;
-	width: 49%;
-	margin: var(--baseFontSize) 0;
 	text-align: center;
 	align-content: center;
 }
-#image img
-{
-	max-width: 24rem;
-	width: auto;
-	min-width: 16rem;
 
-	margin: var(--fontShadowSize);
+/* ==========================================================================
+   Scrollbar Styling
+   ========================================================================== */
 
-	border-style: outset;
-	border-top-color: var(--lightBackground);
-	border-left-color: #34314c;
-	border-right-color: (--lightBackground);
-	border-bottom-color: #34314c;
+::-webkit-scrollbar {
+	width: 8px;
 }
-#content
-{
-	float: right;
-	width: 49%;
-	margin-left: auto;
-	margin-right: auto;
-	align-content: right;
+
+::-webkit-scrollbar-track {
+	background: var(--background);
 }
+
+::-webkit-scrollbar-thumb {
+	background: var(--navbarBackground);
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--navbarForeground);
+}
+
+/* ==========================================================================
+   Selection Styling
+   ========================================================================== */
+
+::selection {
+	background: var(--navbarForeground);
+	color: var(--background);
+}
+
+/* ==========================================================================
+   Focus States (Accessibility)
+   ========================================================================== */
+
+a:focus-visible,
+button:focus-visible,
+.socialButton:focus-visible {
+	outline: 2px solid var(--navbarForeground);
+	outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
 
 @media only screen and (max-width: 900px)
 {
@@ -428,8 +925,12 @@ hr::after
 		border-style: outset;
 		border-top-color: var(--lightBackground);
 		border-left-color: #34314c;
-		border-right-color: (--lightBackground);
+		border-right-color: var(--lightBackground);
 		border-bottom-color: #34314c;
+	}
+	
+	.row {
+		flex-direction: column-reverse;
 	}
 }
 
@@ -471,133 +972,59 @@ hr::after
 		border-style: outset;
 		border-top-color: var(--lightBackground);
 		border-left-color: #34314c;
-		border-right-color: (--lightBackground);
+		border-right-color: var(--lightBackground);
 		border-bottom-color: #34314c;
+	}
+	
+	/* Reduce animations on mobile for performance */
+	body::before {
+		display: none;
 	}
 }
 
-.topnav
-{
-	background-color: var(--navbarBackground);
-	overflow: hidden;
-}
-/* Style the links inside the navigation bar */
-.topnav a
-{
-	color: var(--textColor);
-	font-family: var(--fontFamSS);
-	padding: var(--baseFontSize);
-	font-size: var(--baseFontSize);
+/* ==========================================================================
+   Reduced Motion Support
+   ========================================================================== */
 
-	float: left;
-	text-align: center;
-	text-decoration: none;
-}
-/* Change the color of links on hover */
-.topnav a:hover
-{
-	background-color: var(--navbarHoverColor);
-	color: var(--background);
-}
-/* Add a color to the active/current link */
-.topnav a.active
-{
-	background-color: var(--navbarForeground);
-	color: var(--background);
-	font-weight: bold;
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+	
+	/* Allow cursor blink even with reduced motion - it's subtle and expected */
+	.hero-title::after {
+		animation-duration: 1s !important;
+		animation-iteration-count: infinite !important;
+	}
 }
 
-li
-{
-	margin: auto;
-	padding: 0 var(--baseFontSize);
-	color: var(--textColor);
-	font-family: var(--fontFamSS);
-	font-size: var(--baseFontSize);
-	text-shadow: 0 0 var(--fontShadowSize) black;
-	line-height: calc(var(--baseFontSize) * 1.5);
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
 
-	list-style-type: none;
-	list-style-position: outisde;
-	text-align: left;
+@media print {
+	body::before,
+	.topnav {
+		display: none;
+	}
+	
+	body {
+		background: white;
+		color: black;
+	}
+	
+	a {
+		color: black;
+		text-decoration: underline;
+	}
+	
+	.row {
+		break-inside: avoid;
+		border: 1px solid #ccc;
+		box-shadow: none;
+	}
 }
-li li { font-size: 96%; }
-li li li { font-size: 96%; }
-li li li li { font-size: 96%; }
-li li li li li { font-size: 96%; }
-li::marker { color: var(--textColor); }
-
-.articleList
-{
-	color: var(--textColor);
-	font-family: var(--fontFamSS);
-	font-size: var(--baseFontSize);
-	text-shadow: 0 0 var(--fontShadowSize) black;
-	margin: var(--baseFontSize) 0;
-
-	list-style-type: number;
-	list-style-position: outisde;
-	text-align: left;
-}
-
-.olCenter
-{
-	text-align: center;
-	list-style-position: inside;
-}
-
-.centerOL li
-{
-	/* Adds spacing between line items. */
-	margin-bottom: var(--baseFontSize);
-
-	color: var(--textColor);
-	font-family: var(--fontFamSS);
-	font-size: var(--baseFontSize);
-	text-shadow: 0 0 var(--fontShadowSize) black;
-
-	font-weight: normal;
-	text-align: left;
-	line-height: calc(var(--baseFontSize) * 1.5);
-
-	list-style-type: decimal;
-	list-style-position: outside;
-	text-align: left ;
-	max-width:48ch;
-}
-.centerOL li li { font-size: 96%; list-style-type:lower-alpha; }
-.centerOL li li li { font-size: 96%;  list-style-type:lower-roman; }
-.centerOL li li li li { font-size: 96%; }
-.centerOL li li li li li { font-size: 96%; }
-.centerOL li::marker { color: var(--textColor); }
-
-.ulCenter
-{
-	text-align: center;
-	list-style-position: inside;
-}
-
-.ulCenter li
-{
-	/* Adds spacing between line items. */
-	margin-bottom: var(--baseFontSize);
-
-	color: var(--textColor);
-	font-family: var(--fontFamSS);
-	font-size: var(--baseFontSize);
-	text-shadow: 0 0 var(--fontShadowSize) black;
-
-	font-weight: normal;
-	text-align: left;
-	line-height: calc(var(--baseFontSize) * 1.5);
-
-	list-style-type: square;
-	list-style-position: outside;
-	text-align: left ;
-	max-width:48ch;
-}
-.ulCenter li li { font-size: 96%; list-style-type:disc; }
-.ulCenter li li li { font-size: 96%;  list-style-type:circle; }
-.ulCenter li li li li { font-size: 96%; }
-.ulCenter li li li li li { font-size: 96%; }
-.ulCenter li::marker { color: var(--textColor); }

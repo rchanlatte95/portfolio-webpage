@@ -2,319 +2,298 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-	<meta name="description" content="Ryan Chanlatte Portfolio">
-	
-	<meta name="keywords" content="Ryan Chanlatte, Portfolio, C, C++, C#, Programming, Code, Game Development, Video Games, Aesthetics, Art, Video games as art">
-    
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Ryan Chanlatte - C/C++/C# Developer specializing in graphics programming, game development, and systems programming">
+    <meta name="keywords" content="Ryan Chanlatte, Portfolio, C, C++, C#, Programming, Code, Game Development, Video Games, OpenGL, Graphics Programming, Pathtracing, Unity">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0a0f">
     <link rel="stylesheet" type="text/css" href="portfolio-style.css" />
-    <title>Ryan Chanlatte Portfolio</title>
-	<link rel="icon" type="image/x-icon" href="gwem.ico">
+    <title>Ryan Chanlatte | Projects</title>
+    <link rel="icon" type="image/x-icon" href="gwem.ico">
 </head>
 
 <body>
 
-<div class="topnav">
-  <a href="index.html">About</a>
-  <a class="active" href="Projects.html">Projects</a>
-  <a href="Articles.html">Articles</a>
-</div>
+<nav class="topnav">
+    <a href="index.html">About</a>
+    <a class="active" href="Projects.html">Projects</a>
+    <a href="Articles.html">Articles</a>
+</nav>
 
-<div class="centerContainer">
+<main>
+    <div class="centerContainer">
 
-	<div class="botBorderContainer">
-	<h2>
-		Current Projects
-	</h2>
-	<p style="text-align: center">
-	Here is a list of projects I am actively working on currently.
-	</p>
-	</div>
-	
-	<div class="botBorderContainer">
-		<div class="row">
-			<div id="content" class="">
-				<h3>
-					OpenGL Rasterized Renderer
-					<br>
-					(C++/SDL/OpenGL)
-				</h3>
-				<p>
-				OpenGL renderer meant for my own edification.
-				</p>
-				<p>
-					Current Features:
-					<ul>
-						<li>Custom Math library</li>
-						<li>Can compile and execute inline GLSL shader code</li>
-					</ul>
-				</p>
-				<p>
-					Planned Features:
-					<ul>
-						<li>Custom render image export</li>
-						<li>BRDF reflectance</li>
-						<li>Realtime shadows and shadow maps</li>
-						<li>External Shader files and editing</li>
-						<li>Support for OBJ/FBX/OpenUSD/glTF files</li>
-						<li>Texture mapping (including normals)</li>
-						<li>Screen space post processing</li>
-						<li>Anti-aliasing</li>
-						<li>SDF font rendering</li>
-					</ul>
-					<br><br>
-					<a href="https://github.com/rchanlatte95/rend">Code here</a>
-				</p>
-			</div>
-			<div id="image" class="">
-				<img src="imgs/helloworld-tri.jpg" alt="screenshot of the hello world triangle">
-			</div>
-		</div>
-	</div>
+        <div class="botBorderContainer">
+            <h2>Current Projects</h2>
+            <p>
+                Here is a list of projects I am actively working on currently.
+            </p>
+        </div>
+        
+        <div class="botBorderContainer">
+            <div class="row">
+                <div id="content">
+                    <h3>
+                        OpenGL Rasterized Renderer
+                        <br>
+                        <span style="color: var(--accent-cyan); font-size: 0.9rem; font-family: var(--font-mono);">C++ / SDL / OpenGL</span>
+                    </h3>
+                    <p>
+                        OpenGL renderer meant for my own edification.
+                    </p>
+                    <p><strong style="color: var(--text-primary);">Current Features:</strong></p>
+                    <ul>
+                        <li>Custom Math library</li>
+                        <li>Can compile and execute inline GLSL shader code</li>
+                    </ul>
+                    <p><strong style="color: var(--text-primary);">Planned Features:</strong></p>
+                    <ul>
+                        <li>Custom render image export</li>
+                        <li>BRDF reflectance</li>
+                        <li>Realtime shadows and shadow maps</li>
+                        <li>External Shader files and editing</li>
+                        <li>Support for OBJ/FBX/OpenUSD/glTF files</li>
+                        <li>Texture mapping (including normals)</li>
+                        <li>Screen space post processing</li>
+                        <li>Anti-aliasing</li>
+                        <li>SDF font rendering</li>
+                    </ul>
+                    <a href="https://github.com/rchanlatte95/rend">View Code </a>
+                </div>
+                <div id="image">
+                    <img src="imgs/helloworld-tri.jpg" alt="Screenshot of the hello world triangle rendered with OpenGL">
+                </div>
+            </div>
+        </div>
 
-	<div class="botBorderContainer">
-		<div class="row">
-			<div id="content" class="">
-				<h3>
-					SIMD Accelerated Software PathTracer
-					<br>
-					(C++ and SDL)
-				</h3>
-				<p>
-					Wanted to take a break from OpenGL rasterizers and learn pathtracing.
-				</p>
-				<p>
-					Current Features:
-					<ul>
-						<li>Handwritten math types and algorithms</li>
-						<li>Handwritten graphics algorithms</li>
-					</ul>
-				</p>
-				<p>
-					Planned Features:
-					<ul>
-						<li>Blue noise ray sampling</li>
-						<li>Modified BRDF reflectance</li>
-						<li>Realtime shadows and shadow maps</li>
-						<li>SIMD accerated ray computation</li>
-						<li>Multi-threaded render image construction</li>
-					</ul>
-					<br><br>
-					<a href="https://github.com/rchanlatte95/pt">Code here</a>
-				</p>
-			</div>
-			<div id="image" class="">
-				<img src="imgs/pathtrace.jpg" alt="screenshot the output of a path tracer. a number of different colored spheres with varying levels of reflectance in a white scene.">
-			</div>
-		</div>
-	</div>
+        <div class="botBorderContainer">
+            <div class="row">
+                <div id="content">
+                    <h3>
+                        SIMD Accelerated Software PathTracer
+                        <br>
+                        <span style="color: var(--accent-magenta); font-size: 0.9rem; font-family: var(--font-mono);">C++ / SDL</span>
+                    </h3>
+                    <p>
+                        Wanted to take a break from OpenGL rasterizers and learn pathtracing.
+                    </p>
+                    <p><strong style="color: var(--text-primary);">Current Features:</strong></p>
+                    <ul>
+                        <li>Handwritten math types and algorithms</li>
+                        <li>Handwritten graphics algorithms</li>
+                    </ul>
+                    <p><strong style="color: var(--text-primary);">Planned Features:</strong></p>
+                    <ul>
+                        <li>Blue noise ray sampling</li>
+                        <li>Modified BRDF reflectance</li>
+                        <li>Realtime shadows and shadow maps</li>
+                        <li>SIMD accelerated ray computation</li>
+                        <li>Multi-threaded render image construction</li>
+                    </ul>
+                    <a href="https://github.com/rchanlatte95/pt">View Code </a>
+                </div>
+                <div id="image">
+                    <img src="imgs/pathtrace.jpg" alt="Screenshot of pathtracer output showing colored spheres with varying reflectance in a white scene">
+                </div>
+            </div>
+        </div>
 
-</div>
+    </div>
 
-<div class="centerContainer">
+    <div class="centerContainer">
 
-	<div class="botBorderContainer">
-	<h2>
-		Past Projects
-	</h2>
-	<p style="text-align: center">
-	Here is a list of past projects I've worked on over the years. There will be a link to the Git repo if I am allowed to share the code. Hope you enjoy.
-	</p>
-	</div>
+        <div class="botBorderContainer">
+            <h2>Past Projects</h2>
+            <p>
+                Here is a list of past projects I've worked on over the years. There will be a link to the Git repo if I am allowed to share the code.
+            </p>
+        </div>
 
-	<div class="botBorderContainer">
-		<div class="row">
-			<div id="content" class=""> 
-				<h3>
-					Ordered Events
-					<br>
-					(C# .NET 6.0)
-				</h3>
-				<p>
-					Single-file library that allows you to order event function execution in .NET. Wrote a simpler version during an interview. The interviewer and I spoke about how the order of events in .NET is an implementation detail and not guaranteed to be in the same position as its temporal addition to the invocation list.
-					<br><br>
-					<a href="https://github.com/rchanlatte95/OrderedEvents">Code here</a>
-				</p>
-			</div>
-			<div id="image" class=""> 
-				<img src="imgs/ordered-events.jpg" alt="screenshot of code using the ordered events library I wrote.">
-			</div>
-		</div>
-	</div>
+        <div class="botBorderContainer">
+            <div class="row">
+                <div id="content"> 
+                    <h3>
+                        Ordered Events
+                        <br>
+                        <span style="color: var(--accent-green); font-size: 0.9rem; font-family: var(--font-mono);">C# / .NET 6.0</span>
+                    </h3>
+                    <p>
+                        Single-file library that allows you to order event function execution in .NET. Wrote a simpler version during an interview. The interviewer and I spoke about how the order of events in .NET is an implementation detail and not guaranteed to be in the same position as its temporal addition to the invocation list.
+                    </p>
+                    <a href="https://github.com/rchanlatte95/OrderedEvents">View Code </a>
+                </div>
+                <div id="image"> 
+                    <img src="imgs/ordered-events.jpg" alt="Screenshot of code using the ordered events library">
+                </div>
+            </div>
+        </div>
 
-	<div class="botBorderContainer">
-		<div class="row">
-			<div id="content" class=""> 
-				<h3>
-					DBF to MySQL
-					<br>
-					(C# .NET 6.0)
-				</h3>
-				<p>
-					Needed to convert a lot of Visual Fox Pro DBF tables into MySQL tables. Also wanted to better understand the DBF file spec.
-					<br><br>
-					<a href="https://github.com/rchanlatte95/dbf2mysql">Code here</a>
-				</p>
-			</div>
-			<div id="image" class=""> 
-				<img src="imgs/vfp2cs2sql.jpg" alt="Picture I made that shows the FoxPro logo, an arrow to the C# Logo, and an arrow from the C# logo to the MySQL logo.">
-			</div>
-		</div>
-	</div>
+        <div class="botBorderContainer">
+            <div class="row">
+                <div id="content"> 
+                    <h3>
+                        DBF to MySQL
+                        <br>
+                        <span style="color: var(--accent-orange); font-size: 0.9rem; font-family: var(--font-mono);">C# / .NET 6.0</span>
+                    </h3>
+                    <p>
+                        Needed to convert a lot of Visual Fox Pro DBF tables into MySQL tables. Also wanted to better understand the DBF file spec.
+                    </p>
+                    <a href="https://github.com/rchanlatte95/dbf2mysql">View Code </a>
+                </div>
+                <div id="image"> 
+                    <img src="imgs/vfp2cs2sql.jpg" alt="Diagram showing conversion flow from FoxPro to C# to MySQL">
+                </div>
+            </div>
+        </div>
 
-	<div class="botBorderContainer">
-		<div class="row">
-			<div id="content" class=""> 
-				<h3>
-					Adventure Boy
-					<br>
-					C# Gameplay Programmer
-					<br>
-					(Unity - Windows/WebGL)
-				</h3>
-				<ul>
-					<li>Wrote speech bubble and communication.</li>
-					<li>Created interactable UI/UX.</li>
-					<li>Helped debug sprite shader bugs.</li>
-					<li>Spearheaded rewrite of locomotion system.</li>
-					<li>Produced C# .NET and Unity prototypes swiftly.</li>
-					<li>Crafted modular code and reusable asset prefabs.</li>
-					<li>Executed QA tests and responded to feedback.</li>
-				</ul>
-			</div>
-			<div id="image" class="">
-				<div>
-					<video controls width="350"><source src="imgs/advboy_bus.webm" type="video/webm"/>
-				</div>
-				<div>
-					<video controls width="350"><source src="imgs/advboy_speech-bubbles.webm" type="video/webm"/>
-					</div>
-			</div>
-		</div>
-	</div>
+        <div class="botBorderContainer">
+            <div class="row">
+                <div id="content"> 
+                    <h3>
+                        Adventure Boy
+                        <br>
+                        <span style="color: var(--accent-cyan); font-size: 0.9rem; font-family: var(--font-mono);">C# Gameplay Programmer / Unity</span>
+                    </h3>
+                    <ul>
+                        <li>Wrote speech bubble and communication system</li>
+                        <li>Created interactable UI/UX</li>
+                        <li>Helped debug sprite shader bugs</li>
+                        <li>Spearheaded rewrite of locomotion system</li>
+                        <li>Produced C# .NET and Unity prototypes swiftly</li>
+                        <li>Crafted modular code and reusable asset prefabs</li>
+                        <li>Executed QA tests and responded to feedback</li>
+                    </ul>
+                </div>
+                <div id="image">
+                    <video controls width="100%">
+                        <source src="imgs/advboy_bus.webm" type="video/webm"/>
+                        Your browser does not support the video tag.
+                    </video>
+                    <video controls width="100%">
+                        <source src="imgs/advboy_speech-bubbles.webm" type="video/webm"/>
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
 
-	<div class="botBorderContainer">
-		<div class="row">
-			<div id="content" class=""> 
-				<h3>
-					Eucharist 
-					<br>
-					Lead C# Developer / Producer
-					<br>
-					(Unity - Windows)
-				</h3>
-				<ul>
-					<li>Consistent 60 FPS on mid-range 2015 target hardware.
-						<ul>
-							<li>
-							Utilized <a href="https://en.wikipedia.org/wiki/Data-oriented_design">Data-Oriented Design (DOD)</a> and multi-threading to accomplish this.
-							</li>
-							<li>Implemented audio sub-system to efficiently allocate and access audio files at runtime.</li>
-							<li>Implemented custom asset loader sub-system that ensured scene references were cleaned up on scene change.</li>
-						</ul>
-					</li>
-					<li>Designed and implemented all gameplay code:
-						<ul>
-							<li>Each and every puzzle.</li>
-							<li>Worked with testers to refine gameplay loop.</li>
-							<li>Lock picking mini-game.</li>
-							<li>Interaction and inventory systems.</li>
-							<li>Player locomotion system.</li>
-							<li>Fixed camera system, reminiscent of the classic Resident Evil games.</li>
-							<li>Examination text scroll, reminiscent of the classic Resident Evil games.</li>
-						</ul>
-					</li>
-					<li>Wrote all accessibility options:
-						<ul>
-							<li>Added font support for Dsylexia.</li>
-							<li>Added dynamic font size support.</li>
-							<li>Added dynamic game loop speed setting.</li>
-						</ul>
-					</li>
-					<li>Implemented an automated build and distributable executable export process.</li>
-					<li>Created all UI code and state management code.</li>
-				</ul> 
-			</div>
-			<div id="image" class=""> 
-				<img src="imgs/eucharist-accessibility.jpg" alt="Screenshot of various accessibility options in Eucharist.">
-				<img src="imgs/examine.jpg" alt="Screenshot of scrolling examination text in Eucharist.">
-				<img src="imgs/lockpick-1.jpg" alt="Screenshot of Eucharist lockpicking minigame.">
-			</div>
-		</div>
-	</div>
+        <div class="botBorderContainer">
+            <div class="row">
+                <div id="content"> 
+                    <h3>
+                        Eucharist
+                        <br>
+                        <span style="color: var(--accent-magenta); font-size: 0.9rem; font-family: var(--font-mono);">Lead C# Developer / Producer / Unity</span>
+                    </h3>
+                    <ul>
+                        <li>Consistent 60 FPS on mid-range 2015 target hardware
+                            <ul>
+                                <li>Utilized <a href="https://en.wikipedia.org/wiki/Data-oriented_design" target="_blank" rel="noopener">Data-Oriented Design (DOD)</a> and multi-threading</li>
+                                <li>Implemented audio sub-system for efficient runtime allocation</li>
+                                <li>Custom asset loader ensuring proper scene cleanup</li>
+                            </ul>
+                        </li>
+                        <li>Designed and implemented all gameplay code:
+                            <ul>
+                                <li>Each puzzle with tester feedback integration</li>
+                                <li>Lock picking mini-game</li>
+                                <li>Interaction and inventory systems</li>
+                                <li>Player locomotion system</li>
+                                <li>Fixed camera system (Resident Evil style)</li>
+                                <li>Examination text scroll system</li>
+                            </ul>
+                        </li>
+                        <li>Wrote all accessibility options:
+                            <ul>
+                                <li>Dyslexia-friendly font support</li>
+                                <li>Dynamic font size support</li>
+                                <li>Dynamic game loop speed setting</li>
+                            </ul>
+                        </li>
+                        <li>Automated build and executable export process</li>
+                        <li>Created all UI code and state management</li>
+                    </ul> 
+                </div>
+                <div id="image"> 
+                    <img src="imgs/eucharist-accessibility.jpg" alt="Screenshot of Eucharist accessibility options menu">
+                    <img src="imgs/examine.jpg" alt="Screenshot of scrolling examination text in Eucharist">
+                    <img src="imgs/lockpick-1.jpg" alt="Screenshot of Eucharist lockpicking minigame">
+                </div>
+            </div>
+        </div>
 
-	<div class="botBorderContainer">
-		<div class="row">
-			<div id="content" class=""> 
-				<h3>
-					Draggo Sanctuary
-					<br>
-					Lead C# Developer / Producer
-					<br>
-					(Unity - Android/iOS)
-				</h3>
-				<ul>
-					<li>Consistent 30 FPS on mobile targets (2013).</li>
-						<ul>
-							<li>
-							Utilized <a href="https://en.wikipedia.org/wiki/Data-oriented_design">Data-Oriented Design (DOD)</a> and multi-threading to accomplish this.
-							</li>
-						</ul>
-					<li>Wrote C/C++ DLLs for to optimize hot paths.</li>
-					<li>Created all UI code and state management code.</li>
-					<li>Automated Android/iOS test suite.</li>
-					<li>Wrote optimized shaders for target devices:
-						<ul>
-							<li>Gerstner Oceans Waves</li>
-							<li>Mesh Outline, Diffuse, and Specular</li>
-							<li>Billboards</li>
-							<li>Tree and foliage animation</li>
-							<li>Facial Sprite animation</li>
-						</ul>
-					</li>
-					<li>Designed and implemented gameplay code.
-						<ul>
-							<li>Prototyped <a href="https://en.wikipedia.org/wiki/Incremental_game">Incremental game mechanics</a> and worked with QA testers.</li>
-							<li>Fleshed out progression system tied to tapping and interactions.</li>
-						</ul>				
-					</li>
-					<li>Implemented custom tween library.</li>
-					<li>Used <a href="https://playfab.com/">Playfab</a> as a cloud backend.</li>
-				</ul> 
-				<p>
-					<a href="https://www.youtube.com/watch?v=M0LIW04uxOM">Video of me designing a level.</a>
-				</p>
-			</div>
-			<div id="image" class="">
-				<img src="imgs/ui-ds.jpg" alt="Ui/Ux structure of Draggo Sanctuary in Unity game engine editor.">
-				<img src="imgs/dbg-ds.jpg" alt="Debug ui I wrote for Draggo Sanctuary.">
-			</div>
-		</div>
-	</div>
+        <div class="botBorderContainer">
+            <div class="row">
+                <div id="content"> 
+                    <h3>
+                        Draggo Sanctuary
+                        <br>
+                        <span style="color: var(--accent-green); font-size: 0.9rem; font-family: var(--font-mono);">Lead C# Developer / Producer / Unity Mobile</span>
+                    </h3>
+                    <ul>
+                        <li>Consistent 30 FPS on mobile targets (2013)
+                            <ul>
+                                <li>Utilized <a href="https://en.wikipedia.org/wiki/Data-oriented_design" target="_blank" rel="noopener">Data-Oriented Design (DOD)</a> and multi-threading</li>
+                            </ul>
+                        </li>
+                        <li>Wrote C/C++ DLLs to optimize hot paths</li>
+                        <li>Created all UI code and state management</li>
+                        <li>Automated Android/iOS test suite</li>
+                        <li>Wrote optimized shaders for target devices:
+                            <ul>
+                                <li>Gerstner Ocean Waves</li>
+                                <li>Mesh Outline, Diffuse, and Specular</li>
+                                <li>Billboards</li>
+                                <li>Tree and foliage animation</li>
+                                <li>Facial Sprite animation</li>
+                            </ul>
+                        </li>
+                        <li>Designed and implemented gameplay code:
+                            <ul>
+                                <li>Prototyped <a href="https://en.wikipedia.org/wiki/Incremental_game" target="_blank" rel="noopener">Incremental game mechanics</a> with QA testing</li>
+                                <li>Fleshed out progression system tied to interactions</li>
+                            </ul>				
+                        </li>
+                        <li>Implemented custom tween library</li>
+                        <li>Used <a href="https://playfab.com/" target="_blank" rel="noopener">Playfab</a> as cloud backend</li>
+                    </ul> 
+                    <a href="https://www.youtube.com/watch?v=M0LIW04uxOM" target="_blank" rel="noopener">Watch Level Design Video </a>
+                </div>
+                <div id="image">
+                    <img src="imgs/ui-ds.jpg" alt="UI/UX structure of Draggo Sanctuary in Unity editor">
+                    <img src="imgs/dbg-ds.jpg" alt="Debug UI for Draggo Sanctuary">
+                </div>
+            </div>
+        </div>
 
-</div>
+    </div>
+</main>
 
-</body>
-
-<p> ⠀ </p>
 <footer>
-<div style="footerDiv">
-	<a 	href="https://www.linkedin.com/in/ryan-a-chanlatte/" 
-		class="socialButton" 
-		role="button"
-		style="background-color: #0077B5">
-		LinkedIn
-		<img src="./imgs/LinkedIn_In-White.png" alt="LinkedIn Logo" style="width: 32px; height: 32px;">
-	</a>
-	<a 	href="https://github.com/rchanlatte95" 
-		class="socialButton" 
-		role="button"
-		style="background-color: #171515">
-		Github
-		<img src="./imgs/github-mark-white.png" alt="GitHub Logo" style="width: 32px; height: 32px;">
-	</a>
-</div>
+    <div class="footerDiv">
+        <a href="https://www.linkedin.com/in/ryan-a-chanlatte/" 
+           class="socialButton" 
+           role="button"
+           target="_blank"
+           rel="noopener"
+           style="background-color: #0077B5">
+            LinkedIn
+            <img src="./imgs/LinkedIn_In-White.png" alt="LinkedIn Logo">
+        </a>
+        <a href="https://github.com/rchanlatte95" 
+           class="socialButton" 
+           role="button"
+           target="_blank"
+           rel="noopener"
+           style="background-color: #171515">
+            Github
+            <img src="./imgs/github-mark-white.png" alt="GitHub Logo">
+        </a>
+    </div>
 </footer>
 
+<p>⠀</p>
+
+</body>
 </html>
