@@ -2,66 +2,274 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-	<meta name="description" content="Ryan Chanlatte's Ponderances">
-	
-	<meta name="keywords" content="Ryan Chanlatte, Portfolio, C, C++, C#, Programming, Code, Game Development, Video Games, Aesthetics, Art, Video games as art">
-    
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Ryan Chanlatte's Ponderances - Articles on programming, game development, and philosophy">
+    <meta name="keywords" content="Ryan Chanlatte, Portfolio, C, C++, C#, Programming, Code, Game Development, Video Games, Aesthetics, Art, Video games as art">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1e1e1e">
     <link rel="stylesheet" type="text/css" href="portfolio-style.css" />
-    <title>Ryan Chanlatte Ponderances</title>
-	<link rel="icon" type="image/x-icon" href="gwem.ico">
+    <title>Ryan Chanlatte | Ponderances</title>
+    <link rel="icon" type="image/x-icon" href="gwem.ico">
+    
+    <style>
+        /* Articles page-specific styles */
+        .articles-header {
+            text-align: center;
+            padding: 4rem 1rem 2rem;
+            animation: fadeSlideDown 0.6s ease-out both;
+        }
+        
+        @keyframes fadeSlideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .articles-header h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .disclaimer {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            padding: 1rem;
+            border-left: 3px solid rgba(187, 134, 252, 0.4);
+            background: rgba(32, 32, 32, 0.5);
+            text-align: left;
+            animation: fadeIn 0.6s ease-out 0.2s both;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .articles-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 1rem 4rem;
+        }
+        
+        .article-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .article-item {
+            background: var(--lightBackground);
+            border: 1px solid rgba(187, 134, 252, 0.15);
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            animation: articleSlideIn 0.5s ease-out both;
+        }
+        
+        .article-item:nth-child(1) { animation-delay: 0.3s; }
+        .article-item:nth-child(2) { animation-delay: 0.4s; }
+        .article-item:nth-child(3) { animation-delay: 0.5s; }
+        .article-item:nth-child(4) { animation-delay: 0.6s; }
+        .article-item:nth-child(5) { animation-delay: 0.7s; }
+        
+        @keyframes articleSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Accent bar on left */
+        .article-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--navbarForeground), var(--linkActive));
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .article-item:hover {
+            border-color: rgba(187, 134, 252, 0.4);
+            box-shadow: 0 0 20px rgba(187, 134, 252, 0.15), 0 5px 20px rgba(0, 0, 0, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .article-item:hover::before {
+            transform: scaleY(1);
+        }
+        
+        .article-link {
+            display: block;
+            padding: 1.25rem 1.5rem;
+            text-decoration: none;
+            color: var(--textColor);
+            transition: all 0.2s ease;
+        }
+        
+        .article-link:hover {
+            color: var(--textColor);
+        }
+        
+        .article-date {
+            font-family: var(--fontFamSS);
+            font-size: 0.85rem;
+            color: var(--navbarForeground);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .article-date::before {
+            content: '📅';
+            font-size: 0.9rem;
+        }
+        
+        .article-title {
+            font-family: var(--fontFamSS);
+            font-size: 1.1rem;
+            color: var(--textColor);
+            margin: 0;
+            transition: color 0.2s ease;
+            line-height: 1.4;
+        }
+        
+        .article-item:hover .article-title {
+            color: var(--linkActive);
+            text-shadow: 0 0 10px rgba(152, 195, 121, 0.3);
+        }
+        
+        /* Arrow indicator */
+        .article-link::after {
+            content: '→';
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%) translateX(-10px);
+            opacity: 0;
+            color: var(--linkActive);
+            font-family: var(--fontFamSS);
+            transition: all 0.3s ease;
+        }
+        
+        .article-item:hover .article-link::after {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+        }
+        
+        /* Empty state styling (for future) */
+        .no-articles {
+            text-align: center;
+            color: #a0a0a0;
+            padding: 3rem;
+            font-style: italic;
+        }
+        
+        /* Footer animation */
+        footer {
+            animation: fadeIn 0.6s ease-out 0.8s both;
+        }
+        
+        /* Responsive */
+        @media only screen and (max-width: 600px) {
+            .articles-header {
+                padding: 3rem 1rem 1.5rem;
+            }
+            
+            .disclaimer {
+                font-size: 0.85rem;
+                margin: 0 1rem 2rem;
+            }
+            
+            .article-link {
+                padding: 1rem 1.25rem;
+                padding-right: 2.5rem;
+            }
+            
+            .article-title {
+                font-size: 1rem;
+            }
+            
+            .article-link::after {
+                right: 1rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="topnav">
-  <a href="index.html">About</a>
-  <a href="Projects.html">Projects</a>
-  <a class="active" href="Articles.html">Articles</a>
-</div>
+<nav class="topnav">
+    <a href="index.html">About</a>
+    <a href="Projects.html">Projects</a>
+    <a class="active" href="Articles.html">Articles</a>
+</nav>
 
-<div class="centerContainer" >
+<main>
+    <header class="articles-header">
+        <h2>Ponderances</h2>
+        <p class="disclaimer">
+            The views and opinions expressed in the following articles are solely my own; they do not reflect those of any past or present employers or colleagues.
+        </p>
+    </header>
+    
+    <div class="articles-container">
+        <ul class="article-list">
+            <li class="article-item">
+                <a href="articles/game-design-nit-0.html" class="article-link">
+                    <div class="article-date">2024-11-20</div>
+                    <h3 class="article-title">Game Design Nit #0</h3>
+                </a>
+            </li>
+            <li class="article-item">
+                <a href="articles/pm50pct-perf-in-14-patches.html" class="article-link">
+                    <div class="article-date">2024-05-27</div>
+                    <h3 class="article-title">±50% Performance in 14 patches or less</h3>
+                </a>
+            </li>
+        </ul>
+    </div>
+</main>
 
-<h2>
-	Ponderances
-</h2>
-
-<p style="text-align:center;">
-The views and opinions expressed in the following articles are solely my own; they do not reflect those of any past or present employers or colleagues.
-</p>
-
-<div class="centerContainer" style="width:50%">
-<ul class="articleList">
-	<li class="articleList">
-		2024-11-20 - <a href="articles\game-design-nit-0.html">Game Design Nit #0</a>
-	</li>
-	<li class="articleList">
-		2024-05-27 - <a href="articles\pm50pct-perf-in-14-patches.html">&#xb1;50% Performance in 14 patches or less</a>
-	</li>
-</ul>
-</div>
-</div>
-</body>
-
-<p> ⠀ </p>
 <footer>
-<div style="footerDiv">
-	<a 	href="https://www.linkedin.com/in/ryan-a-chanlatte/" 
-		class="socialButton" 
-		role="button"
-		style="background-color: #0077B5">
-		LinkedIn
-		<img src="./imgs/LinkedIn_In-White.png" alt="LinkedIn Logo" style="width: 32px; height: 32px;">
-	</a>
-	<a 	href="https://github.com/rchanlatte95" 
-		class="socialButton" 
-		role="button"
-		style="background-color: #171515">
-		Github
-		<img src="./imgs/github-mark-white.png" alt="GitHub Logo" style="width: 32px; height: 32px;">
-	</a>
-</div>
+    <div class="footerDiv">
+        <a href="https://www.linkedin.com/in/ryan-a-chanlatte/" 
+           class="socialButton" 
+           role="button"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="background-color: #0077B5">
+            LinkedIn
+            <img src="./imgs/LinkedIn_In-White.png" alt="LinkedIn Logo" style="width: 32px; height: 32px;">
+        </a>
+        <a href="https://github.com/rchanlatte95" 
+           class="socialButton" 
+           role="button"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="background-color: #171515">
+            Github
+            <img src="./imgs/github-mark-white.png" alt="GitHub Logo" style="width: 32px; height: 32px;">
+        </a>
+    </div>
 </footer>
 
+</body>
 </html>
