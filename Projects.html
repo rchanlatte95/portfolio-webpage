@@ -24,44 +24,39 @@
     <div class="centerContainer">
 
         <div class="botBorderContainer">
-            <h2>Current Projects</h2>
+            <h2>Past Projects</h2>
             <p>
-                Here is a list of projects I am actively working on currently.
+                Here is a list of past projects I've worked on over the years. There will be a link to the Git repo if I am allowed to share the code.
             </p>
         </div>
-        
+
         <div class="botBorderContainer">
             <div class="row">
                 <div id="content">
                     <h3>
-                        OpenGL Rasterized Renderer
+                        Scope
                         <br>
-                        <span style="color: var(--accent-cyan); font-size: 0.9rem; font-family: var(--font-mono);">C++ / SDL / OpenGL</span>
+                        <span style="color: var(--accent-cyan); font-size: 0.9rem; font-family: var(--font-mono);">C# / .NET 10 / React / AI Agents</span>
                     </h3>
                     <p>
-                        OpenGL renderer meant for my own edification.
+                        Code intelligence and observability system for AI coding agents, built by directing those same agents. An orchestrator split the work into specs, implementers worked in isolated worktrees, and separate reviewers approved changes before a full test gate.
                     </p>
-                    <p><strong style="color: var(--text-primary);">Current Features:</strong></p>
                     <ul>
-                        <li>Custom Math library</li>
-                        <li>Can compile and execute inline GLSL shader code</li>
+                        <li>Labeled costs by source and showed missing costs as unavailable, never as $0.00</li>
+                        <li>Stopped runaway agents with a non-retryable 403, then killed the process tree past a grace limit</li>
+                        <li>Guarded third-party payload formats with contract tests after a silent change zeroed cost data</li>
+                        <li>Metered live API streams without letting metering failures break the call</li>
+                        <li>Split session costs across tool calls in decimal, so rows sum exactly to totals</li>
+                        <li>Delivered compiler-accurate, token-budgeted context to agents</li>
+                        <li>Beat Amazon's CrossCodeEval reference retrievers on identifier accuracy, tying them on exact matches</li>
+                        <li>Used 79% fewer total tokens than whole-file context on 10 hand-written Serilog tasks; 9 passed evidence checks</li>
+                        <li>Tested accessibility directly: 320px reflow, token contrast, focus rings, nav targets, grayscale status</li>
                     </ul>
-                    <p><strong style="color: var(--text-primary);">Planned Features:</strong></p>
-                    <ul>
-                        <li>Custom render image export</li>
-                        <li>BRDF reflectance</li>
-                        <li>Realtime shadows and shadow maps</li>
-                        <li>External Shader files and editing</li>
-                        <li>Support for OBJ/FBX/OpenUSD/glTF files</li>
-                        <li>Texture mapping (including normals)</li>
-                        <li>Screen space post processing</li>
-                        <li>Anti-aliasing</li>
-                        <li>SDF font rendering</li>
-                    </ul>
-                    <a href="https://github.com/rchanlatte95/rend">View Code </a>
+                    <a href="https://github.com/rchanlatte95/scope">View Code Excerpt </a>
                 </div>
                 <div id="image">
-                    <img src="imgs/helloworld-tri.jpg" alt="Screenshot of the hello world triangle rendered with OpenGL">
+                    <img src="imgs/scope-trace.png" alt="Scope's trace view showing a session graph of an orchestrator and its sub-agents above an event timeline with per-event cost">
+                    <img src="imgs/scope-command.png" alt="Scope's command dashboard showing workspace status, active runs, 7-day spend, and recent scheduled agent runs">
                 </div>
             </div>
         </div>
@@ -70,7 +65,7 @@
             <div class="row">
                 <div id="content">
                     <h3>
-                        SIMD Accelerated Software PathTracer
+                        Software PathTracer
                         <br>
                         <span style="color: var(--accent-magenta); font-size: 0.9rem; font-family: var(--font-mono);">C++ / SDL</span>
                     </h3>
@@ -96,17 +91,6 @@
                     <img src="imgs/pathtrace.jpg" alt="Screenshot of pathtracer output showing colored spheres with varying reflectance in a white scene">
                 </div>
             </div>
-        </div>
-
-    </div>
-
-    <div class="centerContainer">
-
-        <div class="botBorderContainer">
-            <h2>Past Projects</h2>
-            <p>
-                Here is a list of past projects I've worked on over the years. There will be a link to the Git repo if I am allowed to share the code.
-            </p>
         </div>
 
         <div class="botBorderContainer">
