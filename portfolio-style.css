@@ -916,7 +916,7 @@ button:focus-visible,
 		align-content: center;
 	}
 
-	#image img
+	#image img, #image video
 	{
 		max-width: 18rem;
 		width: auto;
@@ -963,7 +963,7 @@ button:focus-visible,
 		width: 75%;
 	}
 
-	#image img
+	#image img, #image video
 	{
 		max-width: 12rem;
 		width: auto;
